@@ -308,21 +308,24 @@
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section">
+        <div class="nav-section-title">业务</div>
+        <div class="nav-item active" data-page="order" onclick="switchPage('order')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15h8v2H8zm0-4h8v2H8z"/></svg>
+          <span>订单管理</span>
+        </div>
+      </div>
+      <div class="nav-section">
         <div class="nav-section-title">概览</div>
-        <div class="nav-item active" data-page="dashboard" onclick="switchPage('dashboard')">
+        <div class="nav-item" data-page="dashboard" onclick="switchPage('dashboard')">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
           <span>工作台</span>
         </div>
       </div>
       <div class="nav-section">
-        <div class="nav-section-title">业务</div>
+        <div class="nav-section-title">客户与服务</div>
         <div class="nav-item" data-page="customer" onclick="switchPage('customer')">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
           <span>客户管理</span>
-        </div>
-        <div class="nav-item" data-page="order" onclick="switchPage('order')">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15h8v2H8zm0-4h8v2H8z"/></svg>
-          <span>订单管理</span>
         </div>
       </div>
       <div class="nav-section">
@@ -334,6 +337,10 @@
         <div class="nav-item" data-page="finance" onclick="switchPage('finance')">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
           <span>财务结算</span>
+        </div>
+        <div class="nav-item" data-page="employees" data-role="admin" onclick="switchPage('employees')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <span>员工管理</span>
         </div>
       </div>
     </nav>
@@ -384,7 +391,11 @@
 <!-- 移动端底部导航 -->
 <nav class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-inner">
-    <div class="mobile-nav-item active" data-mpage="dashboard" onclick="switchPage('dashboard')">
+    <div class="mobile-nav-item active" data-mpage="order" onclick="switchPage('order')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+      <span>订单</span>
+    </div>
+    <div class="mobile-nav-item" data-mpage="dashboard" onclick="switchPage('dashboard')">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
       <span>工作台</span>
     </div>
@@ -392,15 +403,15 @@
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
       <span>客户</span>
     </div>
-    <div class="mobile-nav-item" data-mpage="order" onclick="switchPage('order')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
-      <span>订单</span>
-    </div>
     <div class="mobile-nav-item" data-mpage="finance" onclick="switchPage('finance')">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
       <span>财务</span>
     </div>
-  </div>
+    <div class="mobile-nav-item" data-mpage="employees" onclick="switchPage('employees')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span>员工</span>
+    </div>
+</div>
 </nav>
 
 <script>
@@ -428,7 +439,7 @@ var supabase = null;
 var currentUser = null;
 var currentPage = null;
 var ROLES = { admin:'超级管理员', staff:'业务员', finance:'财务', operator:'操作员' };
-var STATUS_MAP = { pending:['待生产','badge-yellow'], confirmed:['已确认','badge-cyan'], production:['生产中','badge-blue'], quality:['质检中','badge-cyan'], completed:['已完成','badge-green'], cancelled:['已取消','badge-gray'] };
+var STATUS_MAP = { pending:['待确认','badge-yellow'], production:['生产中','badge-blue'], completed:['已完工','badge-green'], delivered:['已送货','badge-cyan'], cancelled:['已取消','badge-gray'] };
 var LEVEL_MAP = { '金牌':'badge-yellow', '银牌':'badge-cyan', '普通':'badge-gray' };
 var PAY_METHODS = ['现金','微信支付','支付宝','银行转账','对公转账','月结'];
 
@@ -437,6 +448,16 @@ var PAY_METHODS = ['现金','微信支付','支付宝','银行转账','对公转
 // ============================================================
 function initApp() {
   supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // 检测是否是签名页访问（?sign=token）
+  var params = new URLSearchParams(location.search);
+  var signToken = params.get('sign');
+  if (signToken) {
+    // 签名页模式：不登录，直接加载签名页
+    initSignPage(signToken);
+    return;
+  }
+
   supabase.auth.getSession().then(function(res) {
     var session = res.data.session;
     if (session) {
@@ -552,7 +573,7 @@ function loadUserAndShowApp(user) {
   // 权限过滤侧边栏
   applyRoleFilter();
 
-  switchPage('dashboard');
+  switchPage('order');
   updateNotifBadge();
   toast('欢迎，' + currentUser.name + '！');
 }
@@ -622,7 +643,7 @@ function isAdmin() { return currentUser && currentUser.role === 'admin'; }
 
 function hasPageAccess(page) {
   if (isAdmin()) return true;
-  if (page === 'finance') return false; // staff 不能看财务
+  if (page === 'finance' || page === 'employees') return false;
   return true;
 }
 
@@ -783,13 +804,14 @@ function switchPage(page) {
   if (mactive) mactive.classList.add('active');
   // 关闭移动端侧边栏
   document.querySelector('.sidebar').classList.remove('open-mobile');
-  var titles = { dashboard:'工作台', customer:'客户管理', order:'订单管理', services:'服务项目', finance:'财务结算' };
+  var titles = { dashboard:'工作台', customer:'客户管理', order:'订单管理', services:'服务项目', finance:'财务结算', employees:'员工管理' };
   document.getElementById('topbarTitle').textContent = titles[page] || '';
   if (page === 'dashboard') renderDashboard();
   else if (page === 'customer') renderCustomers();
   else if (page === 'order') renderOrders();
   else if (page === 'services') renderServices();
   else if (page === 'finance') renderFinance();
+  else if (page === 'employees') renderEmployees();
 }
 
 // ============================================================
@@ -821,29 +843,11 @@ function renderDashboard() {
       statCard('营业收入（已收）', fmtMoney(totalRevenue), '#2E9E6B', 'money') +
       statCard('应收未结金额', fmtMoney(totalReceivable), '#D4860B', 'receivable') +
     '</div>' +
-    // 图表行
     '<div class="chart-row">' +
       '<div class="chart-card"><div class="chart-title">月度营收趋势（近6个月）</div><canvas id="chartRevenue"></canvas></div>' +
       '<div class="chart-card"><div class="chart-title">订单状态分布</div><canvas id="chartStatus"></canvas></div>' +
     '</div>' +
-    // 打印导出按钮
-    '<div style="display:flex;gap:8px;margin-bottom:16px">' +
-      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">🖨️ 打印</button>' +
-      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'仪表盘数据\')">📥 导出CSV</button>' +
-    '</div>' +
-    '<div class="card">' +
-      '<div class="card-title">最近订单</div>' +
-      '<div class="table-wrap">' +
-        '<table><thead><tr><th>订单号</th><th>客户</th><th>状态</th><th>进度</th><th>总金额</th><th>未结</th></tr></thead><tbody>';
-    if (orders.length) {
-      orders.slice(0, 8).forEach(function(o) {
-        var st = STATUS_MAP[o.status] || ['未知','badge-gray'];
-        html += '<tr><td>' + (o.id||'') + '</td><td>' + (o.customer_name||'-') + '</td><td><span class="badge ' + st[1] + '">' + st[0] + '</span></td><td>' + renderProgressBar(o) + '</td><td>' + fmtMoney(o.total) + '</td><td style="color:var(--danger);font-weight:500">' + fmtMoney(o.balance) + '</td></tr>';
-      });
-    } else {
-      html += '<tr><td colspan="6"><div class="empty-state"><p>暂无订单</p></div></td></tr>';
-    }
-    html += '</tbody></table></div></div>';
+    '';
     content.innerHTML = html;
 
     // 渲染图表
@@ -881,15 +885,15 @@ function renderDashboardCharts(orders, payments) {
   }
 
   // 订单状态分布
-  var statusCounts = { pending: 0, production: 0, completed: 0, cancelled: 0 };
+  var statusCounts = { pending: 0, production: 0, completed: 0, delivered: 0 };
   orders.forEach(function(o) { if (statusCounts[o.status] !== undefined) statusCounts[o.status]++; });
   var ctx2 = document.getElementById('chartStatus');
   if (ctx2) {
     chartInstances.status = new Chart(ctx2, {
       type: 'doughnut',
       data: {
-        labels: ['待生产', '生产中', '已完成', '已取消'],
-        datasets: [{ data: [statusCounts.pending, statusCounts.production, statusCounts.completed, statusCounts.cancelled], backgroundColor: ['#D4860B', '#0A7ABA', '#2E9E6B', '#9AA3B5'], borderWidth: 0 }]
+        labels: ['待确认', '生产中', '已完工', '已送货'],
+        datasets: [{ data: [statusCounts.pending, statusCounts.production, statusCounts.completed, statusCounts.delivered], backgroundColor: ['#D4860B', '#0A7ABA', '#2E9E6B', '#0A7ABA'], borderWidth: 0 }]
       },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true } } } }
     });
@@ -900,13 +904,12 @@ function renderDashboardCharts(orders, payments) {
 function renderProgressBar(order) {
   var stages = [
     { key: 'pending', label: '待确认' },
-    { key: 'confirmed', label: '设计中' },
     { key: 'production', label: '生产中' },
-    { key: 'quality', label: '质检' },
-    { key: 'completed', label: '完成' }
+    { key: 'completed', label: '已完工' },
+    { key: 'delivered', label: '已送货' }
   ];
   var curStatus = order.status || 'pending';
-  var curIdx = { pending: 0, confirmed: 1, production: 2, quality: 3, completed: 4, cancelled: -1 }[curStatus] || 0;
+  var curIdx = { pending: 0, production: 1, completed: 2, delivered: 3, cancelled: -1 }[curStatus] || 0;
   if (order.status === 'cancelled') return '<span style="color:var(--gray-400);font-size:12px">已取消</span>';
   var html = '<div class="progress-steps">';
   stages.forEach(function(s, i) {
@@ -949,7 +952,10 @@ function renderCustomers() {
     var list = res.data || [];
     var q = customerSearch.toLowerCase();
     var filtered = list.filter(function(c) {
-      var matchSearch = !q || (c.name||'').toLowerCase().indexOf(q) >= 0 || (c.contact||'').toLowerCase().indexOf(q) >= 0 || (c.phone||'').indexOf(q) >= 0;
+      var contactsArr = [];
+      if (c.contacts) { try { contactsArr = typeof c.contacts === 'string' ? JSON.parse(c.contacts) : c.contacts; } catch(e) {} }
+      var contactsStr = contactsArr.map(function(ct) { return (ct.name||'') + (ct.phone||''); }).join(' ').toLowerCase();
+      var matchSearch = !q || (c.name||'').toLowerCase().indexOf(q) >= 0 || (c.contact||'').toLowerCase().indexOf(q) >= 0 || (c.phone||'').indexOf(q) >= 0 || contactsStr.indexOf(q) >= 0;
       var matchFilter = customerFilter === 'all' || c.level === customerFilter;
       return matchSearch && matchFilter;
     });
@@ -958,7 +964,7 @@ function renderCustomers() {
       '<div class="toolbar">' +
         '<div class="search-box">' +
           '<span class="search-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span>' +
-          '<input type="text" placeholder="搜索客户名/联系人/电话" value="' + customerSearch + '" oninput="customerSearch=this.value;renderCustomers()">' +
+          '<input type="text" id="custSearchInput" placeholder="搜索客户名/联系人/电话" value="' + customerSearch + '" oncompositionstart="this.dataset.composing=\'1\'" oncompositionend="this.dataset.composing=\'\';commitCustomerSearch(this)" onkeydown="if(event.key===\'Enter\')commitCustomerSearch(this)" autocomplete="off">' +
         '</div>' +
         '<select class="filter-select" onchange="customerFilter=this.value;renderCustomers()">' +
           '<option value="all"' + (customerFilter==='all'?' selected':'') + '>全部等级</option>' +
@@ -967,8 +973,9 @@ function renderCustomers() {
           '<option value="普通"' + (customerFilter==='普通'?' selected':'') + '>普通</option>' +
         '</select>' +
         '<button class="btn btn-primary" onclick="openCustomerModal()">+ 新增客户</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="importCustomers()" title="批量导入CSV">📥 批量导入</button>' +
         '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">🖨️</button>' +
-        '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'客户列表\')" title="导出CSV">📥</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'客户列表\')" title="导出CSV">📤 导出</button>' +
         '<span style="color:var(--gray-500);font-size:13px">共 ' + filtered.length + ' 位客户</span>' +
       '</div>' +
       '<div class="table-wrap">' +
@@ -976,13 +983,21 @@ function renderCustomers() {
     if (filtered.length) {
       filtered.forEach(function(c) {
         var st = LEVEL_MAP[c.level] || 'badge-gray';
+        var contactsArr = [];
+        if (c.contacts) {
+          try { contactsArr = typeof c.contacts === 'string' ? JSON.parse(c.contacts) : c.contacts; } catch(e) {}
+        }
+        if (!contactsArr.length && (c.contact||c.phone)) {
+          contactsArr = [{ name: c.contact||'', phone: c.phone||'' }];
+        }
+        var contactDisplay = contactsArr.length ? contactsArr.map(function(ct) { return ct.name + (ct.phone?' ' + ct.phone:''); }).join('、') : '-';
         html += '<tr>' +
           '<td><div style="display:flex;align-items:center;gap:10px">' +
             '<div class="avatar" style="background:' + avatarColor(c.name) + ';color:#fff">' + (c.name||'?')[0] + '</div>' +
             '<div><div style="font-weight:500">' + (c.name||'') + '</div>' +
-            '<div style="font-size:12px;color:var(--gray-400)">' + (c.contact||'') + '</div></div>' +
+            '<div style="font-size:12px;color:var(--gray-400)">' + contactDisplay + '</div></div>' +
           '</div></td>' +
-          '<td><div>' + (c.phone||'-') + '</div><div style="font-size:12px;color:var(--gray-400)">' + (c.email||'-') + '</div></td>' +
+          '<td>' + (c.phone||contactsArr[0]?(contactsArr[0]&&contactsArr[0].phone||'-'):'-') + '</td>' +
           '<td><span class="badge ' + st + '">' + (c.level||'') + '</span></td>' +
           '<td style="' + (c.balance>0?'color:var(--danger);font-weight:500':'color:var(--gray-600)') + '">' + fmtMoney(c.balance) + '</td>' +
           '<td>' + fmtDate(c.created_at) + '</td>' +
@@ -997,6 +1012,13 @@ function renderCustomers() {
     }
     html += '</tbody></table></div></div>';
     content.innerHTML = html;
+    if (_visibleCustSearchFocused) {
+      _visibleCustSearchFocused = false;
+      setTimeout(function() {
+        var inp = document.getElementById('custSearchInput');
+        if (inp) { inp.focus(); try { inp.selectionStart = inp.selectionEnd = inp.value.length; } catch(e) {} }
+      }, 30);
+    }
   });
 }
 
@@ -1015,8 +1037,25 @@ function openCustomerModal(id) {
 
 function showCustomerModal(c, isEdit) {
   var modalId = 'customerModal';
+  var contacts = [];
+  if (c && c.contacts) {
+    try { contacts = typeof c.contacts === 'string' ? JSON.parse(c.contacts) : c.contacts; } catch(e) { contacts = []; }
+  }
+  if (!contacts.length && c) {
+    // 兼容旧数据：如果只有单个联系人字段
+    if (c.contact || c.phone) {
+      contacts = [{ name: c.contact||'', phone: c.phone||'', title: '' }];
+    }
+  }
+
+  var contactsHtml = '<div id="contactRows">';
+  contacts.forEach(function(ct, i) {
+    contactsHtml += contactRowHtml(ct, i);
+  });
+  contactsHtml += '</div>';
+
   var html = '<div class="modal-overlay open" id="' + modalId + '">' +
-    '<div class="modal">' +
+    '<div class="modal" style="width:600px">' +
       '<div class="modal-header">' +
         '<span class="modal-title">' + (isEdit ? '编辑客户' : '新增客户') + '</span>' +
         '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>' +
@@ -1024,10 +1063,6 @@ function showCustomerModal(c, isEdit) {
       '<div class="modal-body">' +
         '<div class="form-row">' +
           '<div class="form-field"><label>客户名称 <span class="required">*</span></label><input type="text" id="c_name" value="' + (c?(c.name||''):'') + '" placeholder="公司/个人名称"></div>' +
-          '<div class="form-field"><label>联系人</label><input type="text" id="c_contact" value="' + (c?(c.contact||''):'') + '" placeholder="联系人姓名"></div>' +
-        '</div>' +
-        '<div class="form-row">' +
-          '<div class="form-field"><label>联系电话</label><input type="text" id="c_phone" value="' + (c?(c.phone||''):'') + '" placeholder="手机/固话"></div>' +
           '<div class="form-field"><label>电子邮箱</label><input type="email" id="c_email" value="' + (c?(c.email||''):'') + '" placeholder="邮箱地址"></div>' +
         '</div>' +
         '<div class="form-row">' +
@@ -1037,7 +1072,12 @@ function showCustomerModal(c, isEdit) {
             '<select id="c_level"><option value="普通"' + ((!c||c.level==='普通')?' selected':'') + '>普通</option><option value="银牌"' + (c&&c.level==='银牌'?' selected':'') + '>银牌</option><option value="金牌"' + (c&&c.level==='金牌'?' selected':'') + '>金牌</option></select></div>' +
         '</div>' +
         '<div class="form-field"><label>地址</label><input type="text" id="c_address" value="' + (c?(c.address||''):'') + '" placeholder="详细地址"></div>' +
-        (isEdit ? '<div class="form-row"><div class="form-field"><label>未结余额</label><input type="number" id="c_balance" value="' + (c?Number(c.balance||0):0) + '" step="0.01"></div></div>' : '') +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px">' +
+          '<strong style="font-size:13px">联系人</strong>' +
+          '<button class="btn btn-outline btn-sm" onclick="addContactRow()">+ 添加联系人</button>' +
+        '</div>' +
+        contactsHtml +
+        (isEdit ? '<div class="form-row" style="margin-top:12px"><div class="form-field"><label>未结余额</label><input type="number" id="c_balance" value="' + (c?Number(c.balance||0):0) + '" step="0.01"></div></div>' : '') +
       '</div>' +
       '<div class="modal-footer">' +
         '<button class="btn btn-outline" onclick="closeModal(\'' + modalId + '\')">取消</button>' +
@@ -1048,13 +1088,52 @@ function showCustomerModal(c, isEdit) {
   document.getElementById('modals').innerHTML = html;
 }
 
+function contactRowHtml(ct, idx) {
+  ct = ct || {};
+  return '<div class="form-row contact-row" data-cidx="' + idx + '" style="align-items:end;margin-bottom:6px">' +
+    '<div class="form-field"><label style="font-size:10px">姓名</label><input type="text" class="ct-name" value="' + (ct.name||'') + '" placeholder="联系人姓名"></div>' +
+    '<div class="form-field"><label style="font-size:10px">电话</label><input type="text" class="ct-phone" value="' + (ct.phone||'') + '" placeholder="手机/固话"></div>' +
+    '<div class="form-field"><label style="font-size:10px">职务</label><input type="text" class="ct-title" value="' + (ct.title||'') + '" placeholder="职务"></div>' +
+    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">✕</button>' +
+  '</div>';
+}
+
+function addContactRow() {
+  var container = document.getElementById('contactRows');
+  if (!container) return;
+  var idx = container.querySelectorAll('.contact-row').length;
+  var div = document.createElement('div');
+  div.className = 'form-row contact-row';
+  div.setAttribute('data-cidx', idx);
+  div.style.alignItems = 'end';
+  div.style.marginBottom = '6px';
+  div.innerHTML = '<div class="form-field"><label style="font-size:10px">姓名</label><input type="text" class="ct-name" placeholder="联系人姓名"></div>' +
+    '<div class="form-field"><label style="font-size:10px">电话</label><input type="text" class="ct-phone" placeholder="手机/固话"></div>' +
+    '<div class="form-field"><label style="font-size:10px">职务</label><input type="text" class="ct-title" placeholder="职务"></div>' +
+    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">✕</button>';
+  container.appendChild(div);
+}
+
 function saveCustomer(id) {
   var name = document.getElementById('c_name').value.trim();
   if (!name) { alert('请输入客户名称'); return; }
+  // 收集联系人
+  var contactRows = document.querySelectorAll('.contact-row');
+  var contacts = [];
+  contactRows.forEach(function(row) {
+    var ctName = (row.querySelector('.ct-name') ? row.querySelector('.ct-name').value : '').trim();
+    var ctPhone = (row.querySelector('.ct-phone') ? row.querySelector('.ct-phone').value : '').trim();
+    var ctTitle = (row.querySelector('.ct-title') ? row.querySelector('.ct-title').value : '').trim();
+    if (ctName || ctPhone) contacts.push({ name: ctName, phone: ctPhone, title: ctTitle });
+  });
+  // 主联系人（第一个）
+  var mainContact = contacts.length ? contacts[0].name : '';
+  var mainPhone = contacts.length ? contacts[0].phone : '';
   var data = {
     name: name,
-    contact: (document.getElementById('c_contact').value||'').trim(),
-    phone: (document.getElementById('c_phone').value||'').trim(),
+    contact: mainContact,
+    phone: mainPhone,
+    contacts: contacts,
     email: (document.getElementById('c_email').value||'').trim(),
     type: document.getElementById('c_type').value,
     level: document.getElementById('c_level').value,
@@ -1078,7 +1157,7 @@ function saveCustomer(id) {
       data.id = 'C' + String(maxId + 1).padStart(3, '0');
       data.balance = 0;
       data.created_at = new Date().toISOString();
-      data.created_by = currentUser.email; // RLS：记录创建者
+      data.created_by = currentUser.email;
       supabase.from('customers').insert([data]).then(function(r2) {
         if (r2.error) { toast('保存失败：' + r2.error.message, 'error'); return; }
         toast('客户添加成功');
@@ -1087,6 +1166,68 @@ function saveCustomer(id) {
       });
     });
   }
+}
+
+// CSV 批量导入客户
+function importCustomers() {
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.csv';
+  input.onchange = function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(evt) {
+      var text = evt.target.result;
+      var lines = text.split(/\r?\n/).filter(function(l) { return l.trim(); });
+      if (lines.length < 2) { toast('CSV格式不正确，至少需要表头+一行数据', 'error'); return; }
+      // 跳过BOM
+      if (lines[0].charCodeAt(0) === 0xFEFF) lines[0] = lines[0].slice(1);
+      var headers = lines[0].split(',').map(function(h) { return h.replace(/"/g,'').trim(); });
+      var imported = 0;
+      var errors = [];
+      // 处理导入
+      (function processLine(i) {
+        if (i >= lines.length) {
+          toast('导入完成：成功 ' + imported + ' 条' + (errors.length ? '，失败 ' + errors.length + ' 条' : ''));
+          if (errors.length) { console.log('导入错误：', errors); }
+          renderCustomers();
+          return;
+        }
+        var cols = lines[i].split(',').map(function(c) { return c.replace(/"/g,'').trim(); });
+        if (cols.length < 2 || !cols[0]) { processLine(i + 1); return; }
+        var customerData = {
+          name: cols[0] || '',
+          contact: cols[1] || '',
+          phone: cols[2] || '',
+          email: cols[3] || '',
+          type: cols[4] || '',
+          level: cols[5] || '普通',
+          address: cols[6] || '',
+          contacts: (cols[1]||cols[2]) ? [{ name: cols[1]||'', phone: cols[2]||'', title: '' }] : [],
+          balance: 0,
+        };
+        // 生成ID
+        supabase.from('customers').select('id').order('id', { ascending: false }).limit(1).then(function(res) {
+          var maxId = 0;
+          if (res.data && res.data.length) {
+            var n = parseInt((res.data[0].id||'').replace('C',''));
+            if (!isNaN(n)) maxId = n;
+          }
+          customerData.id = 'C' + String(maxId + 1 + imported).padStart(3, '0');
+          customerData.created_at = new Date().toISOString();
+          customerData.created_by = currentUser.email;
+          supabase.from('customers').insert([customerData]).then(function(r2) {
+            if (r2.error) { errors.push('行 ' + (i+1) + ': ' + r2.error.message); }
+            else { imported++; }
+            processLine(i + 1);
+          });
+        });
+      })(1);
+    };
+    reader.readAsText(file, 'UTF-8');
+  };
+  input.click();
 }
 
 function deleteCustomer(id) {
@@ -1099,10 +1240,29 @@ function deleteCustomer(id) {
 }
 
 // ============================================================
-//  订单管理
+//  订单管理（重构版）
 // ============================================================
 var orderFilter = 'all';
 var orderSearch = '';
+var orderTab = 'all';
+var orderAdvSearch = { dateFrom: '', dateTo: '', customer: '', contact: '', projectName: '', payStatus: '', prodStatus: '' };
+var orderSelected = [];
+var _composingFlag = false;
+var _selectAllBulk = false;
+var _visibleOrderIds = [];
+var _visibleCustSearchFocused = false;
+
+function commitCustomerSearch(el) {
+  if (el.dataset.composing === '1') return;
+  customerSearch = el.value;
+  _visibleCustSearchFocused = true;
+  renderCustomers();
+}
+function commitOrderSearch(el) {
+  if (el.dataset.composing === '1') return;
+  orderSearch = el.value;
+  renderOrders();
+}
 
 function renderOrders() {
   var content = document.getElementById('pageContent');
@@ -1111,56 +1271,282 @@ function renderOrders() {
   supabase.from('orders').select('*').order('created_at', { ascending: false }).then(function(res) {
     var list = res.data || [];
     var q = orderSearch.toLowerCase();
+    var now = new Date();
+    var todayStr = fmtDate(now);
+    var yesterday = new Date(now); yesterday.setDate(now.getDate() - 1);
+    var yesterdayStr = fmtDate(yesterday);
+    var sevenDaysAgo = new Date(now); sevenDaysAgo.setDate(now.getDate() - 7);
+    var sevenStr = fmtDate(sevenDaysAgo);
+
     var filtered = list.filter(function(o) {
+      // 快捷标签过滤
+      if (orderTab === 'today') { if (fmtDate(o.created_at) !== todayStr) return false; }
+      else if (orderTab === 'yesterday') { if (fmtDate(o.created_at) !== yesterdayStr) return false; }
+      else if (orderTab === '7days') { if (!o.created_at || new Date(o.created_at) < sevenDaysAgo) return false; }
+      // 搜索
       var matchSearch = !q || (o.id||'').toLowerCase().indexOf(q) >= 0 || (o.customer_name||'').toLowerCase().indexOf(q) >= 0;
+      if (!matchSearch) return false;
+      // 状态筛选
       var matchFilter = orderFilter === 'all' || o.status === orderFilter;
-      return matchSearch && matchFilter;
+      if (!matchFilter) return false;
+      // 高级搜索
+      if (orderAdvSearch.dateFrom && o.created_at && new Date(o.created_at) < new Date(orderAdvSearch.dateFrom)) return false;
+      if (orderAdvSearch.dateTo && o.created_at && new Date(o.created_at + 'T23:59:59') > new Date(orderAdvSearch.dateTo)) return false;
+      if (orderAdvSearch.customer && (o.customer_name||'').toLowerCase().indexOf(orderAdvSearch.customer.toLowerCase()) < 0) return false;
+      if (orderAdvSearch.contact && (o.contact||'').toLowerCase().indexOf(orderAdvSearch.contact.toLowerCase()) < 0) return false;
+      if (orderAdvSearch.projectName && (o.project_name||'').toLowerCase().indexOf(orderAdvSearch.projectName.toLowerCase()) < 0) return false;
+      if (orderAdvSearch.payStatus) {
+        if (orderAdvSearch.payStatus === 'unpaid' && Number(o.balance||0) <= 0) return false;
+        if (orderAdvSearch.payStatus === 'paid' && Number(o.balance||0) > 0) return false;
+      }
+      if (orderAdvSearch.prodStatus && o.status !== orderAdvSearch.prodStatus) return false;
+      return true;
     });
+
+    var tabs = [
+      { key: 'all', label: '全部' },
+      { key: 'today', label: '今天' },
+      { key: 'yesterday', label: '昨天' },
+      { key: '7days', label: '近7天' }
+    ];
 
     var html = '<div class="card">' +
       '<div class="toolbar">' +
+        '<div style="display:flex;gap:4px;margin-right:8px">';
+    tabs.forEach(function(t) {
+      html += '<button class="btn ' + (orderTab===t.key?'btn-primary':'btn-outline') + ' btn-sm" onclick="orderTab=\'' + t.key + '\';renderOrders()">' + t.label + '</button>';
+    });
+    html += '</div>' +
         '<div class="search-box">' +
           '<span class="search-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span>' +
-          '<input type="text" placeholder="搜索订单号/客户名" value="' + orderSearch + '" oninput="orderSearch=this.value;renderOrders()">' +
+          '<input type="text" id="ordSearchInput" placeholder="搜索订单号/客户名" value="' + orderSearch + '" oncompositionstart="this.dataset.composing=\'1\'" oncompositionend="this.dataset.composing=\'\';commitOrderSearch(this)" onkeydown="if(event.key===\'Enter\')commitOrderSearch(this)" autocomplete="off">' +
         '</div>' +
         '<select class="filter-select" onchange="orderFilter=this.value;renderOrders()">' +
           '<option value="all">全部状态</option>' +
-          '<option value="pending">待生产</option>' +
+          '<option value="pending">待确认</option>' +
           '<option value="production">生产中</option>' +
-          '<option value="completed">已完成</option>' +
+          '<option value="completed">已完工</option>' +
+          '<option value="delivered">已送货</option>' +
           '<option value="cancelled">已取消</option>' +
         '</select>' +
+        '<button class="btn btn-outline btn-sm" onclick="openAdvSearchModal()" title="高级搜索">🔍 高级搜索</button>' +
         '<button class="btn btn-primary" onclick="openOrderModal()">+ 新建订单</button>' +
-        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">🖨️</button>' +
-        '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'订单列表\')" title="导出CSV">📥</button>' +
+        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchPrint()">🖨️ 批量打印</button>' : '') +
+        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchExport()">📥 批量导出</button>' : '') +
+        (orderSelected.length && isAdmin() ? '<button class="btn btn-primary btn-sm" onclick="batchSettle()">💰 批量结算</button>' : '') +
         '<span style="color:var(--gray-500);font-size:13px">共 ' + filtered.length + ' 个订单</span>' +
       '</div>' +
       '<div class="table-wrap">' +
-        '<table><thead><tr><th>订单号</th><th>客户</th><th>状态</th><th>进度</th><th>截止日期</th><th>总金额</th><th>已付</th><th>未结</th><th>操作</th></tr></thead><tbody>';
+        '<table><thead><tr>' +
+        '<th style="width:30px"><input type="checkbox" onchange="toggleSelectAll(this)" id="selectAllChk"></th>' +
+        '<th>订单号</th><th>客户</th><th>联系人</th><th>项目名称</th><th>开单日期</th><th>状态</th><th>进度</th><th>总金额</th><th>已付</th><th>未结</th><th>操作</th></tr></thead><tbody>';
     if (filtered.length) {
       filtered.forEach(function(o) {
         var st = STATUS_MAP[o.status] || ['未知','badge-gray'];
+        var isChecked = orderSelected.indexOf(o.id) >= 0;
+        var isSettled = Number(o.balance||0) <= 0 && o.status !== 'cancelled';
         html += '<tr>' +
+          '<td><input type="checkbox" ' + (isChecked?'checked':'') + ' onchange="toggleSelectOrder(\'' + o.id + '\')"></td>' +
           '<td><strong>' + (o.id||'') + '</strong></td>' +
           '<td>' + (o.customer_name||'-') + '</td>' +
+          '<td>' + (o.contact||'-') + '</td>' +
+          '<td>' + (o.project_name||'-') + '</td>' +
+          '<td>' + (o.order_date||fmtDate(o.created_at)) + '</td>' +
           '<td><span class="badge ' + st[1] + '">' + st[0] + '</span></td>' +
           '<td style="min-width:180px">' + renderProgressBar(o) + '</td>' +
-          '<td>' + (o.due_date ? fmtDate(o.due_date) : '<span style="color:var(--gray-400)">-</span>') + '</td>' +
           '<td>' + fmtMoney(o.total) + '</td>' +
           '<td>' + fmtMoney(o.paid) + '</td>' +
           '<td style="' + (o.balance>0?'color:var(--danger);font-weight:500':'color:var(--gray-600)') + '">' + fmtMoney(o.balance) + '</td>' +
           '<td><div style="display:flex;gap:4px">' +
-            '<button class="btn btn-ghost btn-sm" onclick="openOrderModal(\'' + o.id + '\')">编辑</button>' +
-            (isAdmin() ? '<button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="deleteOrder(\'' + o.id + '\')">删除</button>' : '') +
+            (isSettled ? '<span style="color:var(--gray-400);font-size:11px">已结算</span>' :
+              '<button class="btn btn-ghost btn-sm" onclick="openOrderModal(\'' + o.id + '\')">编辑</button>' +
+              (isAdmin() ? '<button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="deleteOrder(\'' + o.id + '\')">删除</button>' : '')) +
+              (o.signature ? '<button class="btn btn-ghost btn-sm" style="color:var(--primary)" onclick="viewSignature(\'' + o.id + '\')">查看签字</button>' : '') +
+              (!isSettled && !o.signature ? '<button class="btn btn-outline btn-sm" onclick="sendSignLink(\'' + o.id + '\')">🖊 签字</button>' : '') +
           '</div></td>' +
         '</tr>';
       });
     } else {
-      html += '<tr><td colspan="9"><div class="empty-state"><p>暂无订单</p></div></td></tr>';
+      html += '<tr><td colspan="12"><div class="empty-state"><p>暂无订单</p></div></td></tr>';
     }
     html += '</tbody></table></div></div>';
     content.innerHTML = html;
+    setTimeout(function() {
+      var inp = document.getElementById('ordSearchInput');
+      if (inp && document.activeElement !== inp) {
+        // 如果之前有焦点就恢复，但不强制
+      }
+    }, 30);
   });
+}
+
+function toggleSelectAll(cb) {
+  var checked = cb.checked;
+  var checkboxes = document.querySelectorAll('#pageContent tbody td:first-child input[type="checkbox"]');
+  orderSelected = [];
+  checkboxes.forEach(function(r) {
+    r.checked = checked;
+    if (checked) {
+      var row = r.closest('tr');
+      var orderIdEl = row.querySelector('td:nth-child(2) strong');
+      if (orderIdEl) orderSelected.push(orderIdEl.textContent);
+    }
+  });
+  refreshOrderToolbar();
+}
+
+function toggleSelectOrder(id) {
+  var idx = orderSelected.indexOf(id);
+  if (idx >= 0) { orderSelected.splice(idx, 1); } else { orderSelected.push(id); }
+  updateSelectAllCheckbox();
+  refreshOrderToolbar();
+}
+
+function updateSelectAllCheckbox() {
+  var allCb = document.getElementById('selectAllChk');
+  if (!allCb) return;
+  var visibleCheckboxes = document.querySelectorAll('#pageContent tbody td:first-child input[type="checkbox"]');
+  var visibleCount = visibleCheckboxes.length;
+  if (orderSelected.length === 0) { allCb.checked = false; allCb.indeterminate = false; }
+  else if (orderSelected.length >= visibleCount && visibleCount > 0) { allCb.checked = true; allCb.indeterminate = false; }
+  else { allCb.indeterminate = true; allCb.checked = false; }
+}
+
+function refreshOrderToolbar() {
+  // 更新工具栏中批量操作按钮的显示
+  var toolbar = document.querySelector('#pageContent .toolbar');
+  if (!toolbar) return;
+  // 重新渲染工具栏（简化版：直接更新按钮文本和显示）
+  var existingSpan = toolbar.querySelector('span');
+  var countText = '共 ' + (document.querySelectorAll('#pageContent tbody tr').length - (document.querySelector('#pageContent .empty-state')?1:0)) + ' 个订单';
+  if (existingSpan) existingSpan.textContent = countText;
+  // 更新批量按钮可见性
+  var buttons = toolbar.querySelectorAll('button');
+  var seenExport = false, seenSettle = false, seenPrint = false;
+  buttons.forEach(function(btn) {
+    var txt = btn.textContent || '';
+    if (txt.indexOf('批量打印') >= 0) {
+      btn.style.display = orderSelected.length ? '' : 'none';
+      seenPrint = true;
+    }
+    if (txt.indexOf('批量导出') >= 0 || txt.indexOf('📥') >= 0) {
+      btn.style.display = orderSelected.length ? '' : 'none';
+      seenExport = true;
+    }
+    if (txt.indexOf('批量结算') >= 0 || txt.indexOf('💰') >= 0) {
+      btn.style.display = (orderSelected.length && typeof isAdmin === 'function' && isAdmin()) ? '' : 'none';
+      seenSettle = true;
+    }
+  });
+}
+
+function batchPrint() {
+  if (!orderSelected.length) return;
+  orderSelected.forEach(function(id) {
+    // 为每个选中订单触发编辑弹窗的打印
+  });
+  toast('批量打印功能：请逐个打开订单进行打印', 'info');
+}
+
+function batchExport() {
+  if (!orderSelected.length) { toast('请先选择订单', 'error'); return; }
+  var table = document.querySelector('table');
+  if (!table) return;
+  var rows = table.querySelectorAll('tbody tr');
+  var csv = [['订单号','客户','联系人','项目名称','开单日期','状态','总金额','已付','未结'].join(',')];
+  rows.forEach(function(row) {
+    var cb = row.querySelector('input[type="checkbox"]');
+    if (!cb || !cb.checked) return;
+    var cols = row.querySelectorAll('td');
+    var line = [];
+    for (var i = 1; i < cols.length - 1; i++) {
+      var text = (cols[i].textContent||'').replace(/"/g,'""').replace(/\n/g,' ').trim();
+      line.push('"' + text + '"');
+    }
+    csv.push(line.join(','));
+  });
+  var BOM = '\uFEFF';
+  var blob = new Blob([BOM + csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = '选中订单.csv'; a.click();
+  URL.revokeObjectURL(url);
+  toast('导出成功！');
+}
+
+function batchSettle() {
+  if (!orderSelected.length) { toast('请先选择订单', 'error'); return; }
+  if (!confirm('确认批量结算 ' + orderSelected.length + ' 个订单？')) return;
+  var done = 0;
+  orderSelected.forEach(function(id) {
+    supabase.from('orders').select('*').eq('id', id).single().then(function(res) {
+      var o = res.data;
+      if (!o || Number(o.balance||0) <= 0) { done++; return; }
+      var payment = {
+        id: 'PAY' + Date.now().toString(36).toUpperCase(),
+        order_id: id,
+        customer_name: o.customer_name,
+        amount: o.balance,
+        method: '银行转账',
+        note: '批量结算',
+        created_at: new Date().toISOString(),
+        created_by: currentUser.email
+      };
+      supabase.from('payments').insert([payment]).then(function() {
+        supabase.from('orders').update({ paid: o.total, balance: 0 }).eq('id', id).then(function() {
+          done++;
+          if (done >= orderSelected.length) { toast('批量结算完成'); orderSelected = []; renderOrders(); }
+        });
+      });
+    });
+  });
+}
+
+function openAdvSearchModal() {
+  var modalId = 'advSearchModal';
+  var html = '<div class="modal-overlay open" id="' + modalId + '">' +
+    '<div class="modal" style="width:520px">' +
+      '<div class="modal-header">' +
+        '<span class="modal-title">高级搜索</span>' +
+        '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>' +
+      '</div>' +
+      '<div class="modal-body">' +
+        '<div class="form-row">' +
+          '<div class="form-field"><label>开单日期 从</label><input type="date" id="as_dateFrom" value="' + (orderAdvSearch.dateFrom||'') + '"></div>' +
+          '<div class="form-field"><label>至</label><input type="date" id="as_dateTo" value="' + (orderAdvSearch.dateTo||'') + '"></div>' +
+        '</div>' +
+        '<div class="form-row">' +
+          '<div class="form-field"><label>客户名称</label><input type="text" id="as_customer" value="' + (orderAdvSearch.customer||'') + '" placeholder="模糊搜索"></div>' +
+          '<div class="form-field"><label>联系人</label><input type="text" id="as_contact" value="' + (orderAdvSearch.contact||'') + '" placeholder="模糊搜索"></div>' +
+        '</div>' +
+        '<div class="form-row">' +
+          '<div class="form-field"><label>项目名称</label><input type="text" id="as_projectName" value="' + (orderAdvSearch.projectName||'') + '" placeholder="模糊搜索"></div>' +
+          '<div class="form-field"><label>收款状态</label>' +
+            '<select id="as_payStatus"><option value="">不限</option><option value="unpaid"' + (orderAdvSearch.payStatus==='unpaid'?' selected':'') + '>未结清</option><option value="paid"' + (orderAdvSearch.payStatus==='paid'?' selected':'') + '>已结清</option></select></div>' +
+          '<div class="form-field"><label>生产状态</label>' +
+            '<select id="as_prodStatus"><option value="">不限</option><option value="pending"' + (orderAdvSearch.prodStatus==='pending'?' selected':'') + '>待确认</option><option value="production"' + (orderAdvSearch.prodStatus==='production'?' selected':'') + '>生产中</option><option value="completed"' + (orderAdvSearch.prodStatus==='completed'?' selected':'') + '>已完工</option><option value="delivered"' + (orderAdvSearch.prodStatus==='delivered'?' selected':'') + '>已送货</option></select></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="modal-footer">' +
+        '<button class="btn btn-outline" onclick="orderAdvSearch={dateFrom:\'\',dateTo:\'\',customer:\'\',contact:\'\',projectName:\'\',payStatus:\'\',prodStatus:\'\'};closeModal(\'' + modalId + '\');renderOrders()">重置</button>' +
+        '<button class="btn btn-primary" onclick="applyAdvSearch(\'' + modalId + '\')">搜索</button>' +
+      '</div>' +
+    '</div></div>';
+  document.getElementById('modals').innerHTML = html;
+}
+
+function applyAdvSearch(modalId) {
+  orderAdvSearch = {
+    dateFrom: document.getElementById('as_dateFrom').value,
+    dateTo: document.getElementById('as_dateTo').value,
+    customer: document.getElementById('as_customer').value.trim(),
+    contact: document.getElementById('as_contact').value.trim(),
+    projectName: document.getElementById('as_projectName').value.trim(),
+    payStatus: document.getElementById('as_payStatus').value,
+    prodStatus: document.getElementById('as_prodStatus').value
+  };
+  closeModal(modalId);
+  renderOrders();
 }
 
 function openOrderModal(id) {
@@ -1169,15 +1555,36 @@ function openOrderModal(id) {
   if (isEdit) {
     supabase.from('orders').select('*').eq('id', id).single().then(function(res) {
       o = res.data;
+      // 已结算订单不可编辑
+      if (Number(o.balance||0) <= 0 && o.status !== 'cancelled') {
+        toast('已结算订单不可修改', 'error');
+        return;
+      }
       openOrderModalInner(o, isEdit);
     });
   } else {
-    openOrderModalInner(null, false);
+    // 新建：自动生成订单编号 YYYYMMDD + 当日序号
+    var today = new Date();
+    var prefix = today.getFullYear().toString() + (today.getMonth()+1).toString().padStart(2,'0') + today.getDate().toString().padStart(2,'0');
+    var todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toISOString();
+    supabase.from('orders').select('id').gte('created_at', todayStart).order('created_at', { ascending: false }).then(function(res) {
+      var seq = 1;
+      if (res.data && res.data.length) {
+        // 解析今日已有订单的最大序号
+        res.data.forEach(function(r) {
+          if (r.id && r.id.startsWith(prefix)) {
+            var n = parseInt(r.id.substring(8));
+            if (!isNaN(n) && n >= seq) seq = n + 1;
+          }
+        });
+      }
+      openOrderModalInner(null, false, prefix + String(seq).padStart(3,'0'));
+    });
   }
 }
 
-function openOrderModalInner(o, isEdit) {
-  supabase.from('customers').select('id,name').order('name').then(function(cRes) {
+function openOrderModalInner(o, isEdit, newOrderId) {
+  supabase.from('customers').select('id,name,contact,phone').order('name').then(function(cRes) {
     supabase.from('services').select('*').order('category,name').then(function(sRes) {
       var customers = cRes.data || [];
       var services = sRes.data || [];
@@ -1188,108 +1595,245 @@ function openOrderModalInner(o, isEdit) {
         });
       }
       var modalId = 'orderModal';
+      var isSettled = o && Number(o.balance||0) <= 0 && o.status !== 'cancelled';
       var html = '<div class="modal-overlay open" id="' + modalId + '">' +
-        '<div class="modal" style="width:700px">' +
+        '<div class="modal" style="width:100vw;height:100vh;max-width:100vw;max-height:100vh;border-radius:0;display:flex;flex-direction:column">' +
           '<div class="modal-header">' +
-            '<span class="modal-title">' + (isEdit ? '编辑订单' : '新建订单') + '</span>' +
+            '<span class="modal-title">' + (isEdit ? '编辑订单 - ' + (o?o.id:'') : '新建订单') + '</span>' +
             '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>' +
           '</div>' +
-          '<div class="modal-body" id="orderModalBody">' +
+          '<div class="modal-body" id="orderModalBody" style="flex:1;overflow-y:auto">' +
             '<div class="form-row">' +
-              '<div class="form-field"><label>客户 <span class="required">*</span></label>' +
-                '<select id="o_customer">' +
-                  '<option value="">请选择客户</option>' +
-                  customers.map(function(c) { return '<option value="' + c.id + '" ' + (o&&o.customer_id===c.id?'selected':'') + '>' + c.name + '</option>'; }).join('') +
-                '</select></div>' +
-              '<div class="form-field"><label>订单状态</label>' +
-                '<select id="o_status">' +
-                  '<option value="pending"' + (!o||o.status==='pending'?' selected':'') + '>待生产</option>' +
-                  '<option value="confirmed"' + (o&&o.status==='confirmed'?' selected':'') + '>已确认</option>' +
-                  '<option value="production"' + (o&&o.status==='production'?' selected':'') + '>生产中</option>' +
-                  '<option value="quality"' + (o&&o.status==='quality'?' selected':'') + '>质检中</option>' +
-                  '<option value="completed"' + (o&&o.status==='completed'?' selected':'') + '>已完成</option>' +
-                  '<option value="cancelled"' + (o&&o.status==='cancelled'?' selected':'') + '>已取消</option>' +
-                '</select></div>' +
+              '<div class="form-field"><label>订单编号</label><input type="text" value="' + (o?o.id:(newOrderId||'')) + '" readonly style="background:var(--gray-50);font-weight:600;color:var(--primary)"></div>' +
+              '<div class="form-field"><label>开单日期</label><input type="date" id="o_order_date" value="' + (o&&o.order_date?o.order_date:(o?fmtDate(o.created_at):fmtDate(new Date()))) + '"></div>' +
             '</div>' +
             '<div class="form-row">' +
-              '<div class="form-field"><label>截止日期</label><input type="date" id="o_due_date" value="' + (o&&o.due_date?o.due_date.split('T')[0]:'') + '"></div>' +
+              '<div class="form-field"><label>客户 <span class="required">*</span></label>' +
+                '<input type="text" id="o_customer_search" value="' + (o&&o.customer_name||'') + '" placeholder="输入客户名称搜索..." autocomplete="off" oninput="filterCustomerDropdown()" onfocus="showCustomerDropdown()">' +
+                '<input type="hidden" id="o_customer" value="' + (o?o.customer_id||'':'') + '">' +
+                '<div id="customerDropdown" style="display:none;position:absolute;background:#fff;border:1px solid var(--gray-200);border-radius:6px;max-height:160px;overflow-y:auto;z-index:10;width:calc(100% - 32px);margin-top:2px;box-shadow:0 4px 12px rgba(0,0,0,.1)"></div>' +
+              '</div>' +
+              '<div class="form-field"><label>联系人</label><input type="text" id="o_contact" list="contactDatalist" value="' + (o&&o.contact?o.contact:'') + '" placeholder="选择或手动输入联系人" style="width:100%;padding:8px 12px;border:1.5px solid var(--gray-200);border-radius:6px;font-size:13px" autocomplete="off"><datalist id="contactDatalist"></datalist></div>' +
+            '</div>' +
+            '<div class="form-row">' +
+              '<div class="form-field"><label>项目名称</label><input type="text" id="o_project_name" value="' + (o?(o.project_name||''):'') + '" placeholder="项目名称，最多50字" maxlength="50" style="font-size:14px;padding:10px 12px"></div>' +
+            '</div>' +
+            '<div class="form-field"><label>生产要求</label><textarea id="o_requirement" rows="3" placeholder="输入生产制作要求...">' + (o?(o.requirement||''):'') + '</textarea></div>' +
+            '<div class="form-row">' +
+              '<div class="form-field"><label>订单状态</label>' +
+                '<select id="o_status">' +
+                  '<option value="pending"' + (!o||o.status==='pending'?' selected':'') + '>待确认</option>' +
+                  '<option value="production"' + (o&&o.status==='production'?' selected':'') + '>生产中</option>' +
+                  '<option value="completed"' + (o&&o.status==='completed'?' selected':'') + '>已完工</option>' +
+                  '<option value="delivered"' + (o&&o.status==='delivered'?' selected':'') + '>已送货</option>' +
+                  '<option value="cancelled"' + (o&&o.status==='cancelled'?' selected':'') + '>已取消</option>' +
+                '</select></div>' +
               '<div class="form-field"><label>备注</label><input type="text" id="o_remark" value="' + (o?(o.remark||''):'') + '" placeholder="订单备注"></div>' +
             '</div>' +
             '<hr style="border:none;border-top:1px solid var(--gray-200);margin:16px 0">' +
-            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">' +
-              '<strong style="font-size:14px">订单项目</strong>' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+              '<strong style="font-size:14px">项目明细</strong>' +
               '<button class="btn btn-outline btn-sm" onclick="addOrderItemRow()">+ 添加项目</button>' +
             '</div>' +
-            '<div id="orderItems">' + (itemsHtml || '<div style="color:var(--gray-400);font-size:13px;padding:12px 0">暂无项目，请点击上方按钮添加</div>') + '</div>' +
-            '<div id="orderTotal" style="text-align:right;margin-top:16px;font-size:15px;font-weight:600;color:var(--gray-800)">合计：¥0.00</div>' +
+            '<div style="overflow-x:auto;border:1px solid var(--gray-200);border-radius:6px">' +
+              '<table style="min-width:900px;font-size:12px" id="orderItemsTable">' +
+                '<thead><tr style="background:var(--gray-50)">' +
+                  '<th style="width:50px;text-align:center">序号</th>' +
+                  '<th style="width:180px">服务名称</th>' +
+                  '<th style="width:100px">规格</th>' +
+                  '<th style="width:70px">单位</th>' +
+                  '<th style="width:60px">数量</th>' +
+                  '<th style="width:60px">份数</th>' +
+                  '<th style="width:80px">单价</th>' +
+                  '<th style="width:70px">折扣</th>' +
+                  '<th style="width:90px">金额</th>' +
+                  '<th style="width:100px">备注</th>' +
+                  '<th style="width:40px">操作</th>' +
+                '</tr></thead>' +
+                '<tbody id="orderItems">' + (itemsHtml || '<tr><td colspan="11" style="text-align:center;color:var(--gray-400);padding:20px">暂无项目，请点击上方按钮添加</td></tr>') + '</tbody>' +
+              '</table>' +
+            '</div>' +
+            '<datalist id="svcDatalist"></datalist>' +
+            '<div id="orderTotal" style="text-align:right;margin-top:16px;font-size:16px;font-weight:700;color:var(--gray-800)">合计：¥0.00</div>' +
           '</div>' +
-          '<div class="modal-footer">' +
-            '<button class="btn btn-outline" onclick="closeModal(\'' + modalId + '\')">取消</button>' +
-            '<button class="btn btn-primary" onclick="saveOrder(\'' + (o&&o.id||'') + '\')">保存订单</button>' +
+          '<div class="modal-footer" style="justify-content:space-between">' +
+            '<div>' +
+              (isEdit ? '<button class="btn btn-outline btn-sm" onclick="printOrderModal()">🖨️ 打印订单</button> ' : '') +
+              (isEdit && Number(o.balance||0) > 0 ? '<button class="btn btn-primary btn-sm" onclick="settleFromModal(\'' + (o?o.id:'') + '\')">💰 结算</button>' : '') +
+            '</div>' +
+            '<div>' +
+              '<button class="btn btn-outline" onclick="closeModal(\'' + modalId + '\')">取消</button>' +
+              '<button class="btn btn-primary" onclick="saveOrder(\'' + (o&&o.id||'') + '\',\'' + (newOrderId||'') + '\')">保存订单</button>' +
+            '</div>' +
           '</div>' +
         '</div>' +
       '</div>';
       document.getElementById('modals').innerHTML = html;
+      window._allCustomers = customers;
+      window._allServices = services;
+      // 填充服务名称 datalist
+      var dl = document.getElementById('svcDatalist');
+      if (dl) {
+        dl.innerHTML = services.map(function(s) {
+          return '<option value="' + s.name.replace(/"/g,'&quot;') + '">' + (s.category||'') + '</option>';
+        }).join('');
+      }
       if (!isEdit) addOrderItemRow();
       else recalcOrderTotal();
     });
   });
 }
 
+function filterCustomerDropdown() {
+  var input = document.getElementById('o_customer_search');
+  var dropdown = document.getElementById('customerDropdown');
+  var q = (input.value||'').toLowerCase();
+  var customers = window._allCustomers || [];
+  var filtered = customers.filter(function(c) { return (c.name||'').toLowerCase().indexOf(q) >= 0; });
+  dropdown.innerHTML = filtered.map(function(c) {
+    return '<div style="padding:8px 12px;cursor:pointer;font-size:13px" onmousedown="selectCustomer(\'' + c.id + '\',\'' + (c.name||'').replace(/'/g,"\\'") + '\')">' + (c.name||'') + ' <span style="color:var(--gray-400);font-size:11px">' + (c.contact||'') + '</span></div>';
+  }).join('');
+  if (filtered.length) { dropdown.style.display = 'block'; }
+  else { dropdown.innerHTML = '<div style="padding:8px 12px;color:var(--gray-400);font-size:12px">未找到匹配客户</div>'; dropdown.style.display = 'block'; }
+}
+
+function showCustomerDropdown() {
+  var dropdown = document.getElementById('customerDropdown');
+  filterCustomerDropdown();
+  dropdown.style.display = 'block';
+}
+
+function selectCustomer(id, name) {
+  document.getElementById('o_customer').value = id;
+  document.getElementById('o_customer_search').value = name;
+  document.getElementById('customerDropdown').style.display = 'none';
+  // 自动填充联系人
+  var customers = window._allCustomers || [];
+  var customer = customers.find(function(c) { return c.id === id; });
+  var contactsArr = [];
+  if (customer && customer.contacts) {
+    try { contactsArr = typeof customer.contacts === 'string' ? JSON.parse(customer.contacts) : customer.contacts; } catch(e) {}
+  }
+  if (!contactsArr.length && customer && (customer.contact||customer.phone)) {
+    contactsArr = [{ name: customer.contact||'', phone: customer.phone||'' }];
+  }
+  var contactInput = document.getElementById('o_contact');
+  var contactDatalist = document.getElementById('contactDatalist');
+  if (contactDatalist) {
+    var opts = '';
+    contactsArr.forEach(function(ct, i) {
+      var label = (ct.name||'') + (ct.phone ? ' - ' + ct.phone : '') + (ct.title ? ' (' + ct.title + ')' : '');
+      opts += '<option value="' + (ct.name||'') + '">' + label + '</option>';
+    });
+    contactDatalist.innerHTML = opts;
+  }
+  if (contactInput && contactsArr.length) contactInput.value = contactsArr[0].name||'';
+}
+
+function printOrderModal() {
+  var modal = document.querySelector('#orderModal .modal');
+  if (!modal) return;
+  var win = window.open('', '_blank', 'width=800,height=600');
+  win.document.write('<html><head><meta charset="UTF-8"><title>打印订单</title><style>body{font-family:sans-serif;padding:20px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:8px;font-size:13px}th{background:#f5f5f5}@media print{body{padding:0}}</style></head><body>' + modal.innerHTML.replace(/<button[^>]*>.*?<\/button>/g,'') + '</body></html>');
+  win.document.close();
+  setTimeout(function() { win.print(); }, 300);
+}
+
+function settleFromModal(orderId) {
+  closeModal('orderModal');
+  openPaymentModal(orderId);
+}
+
 function orderItemRow(services, item, idx) {
-  var selHtml = '<option value="">选择服务项目</option>';
-  services.forEach(function(s) {
-    var val = JSON.stringify({ id: s.id, name: s.name, price: s.price }).replace(/"/g, '&quot;');
-    selHtml += '<option value="' + val + '" ' + (item&&item.serviceId===s.id?'selected':'') + '>' + s.category + ' - ' + s.name + ' (¥' + s.price + ')</option>';
-  });
-  return '<div class="form-row order-item" style="align-items:end;margin-bottom:8px" data-idx="' + idx + '">' +
-    '<div class="form-field"><select class="item-service" onchange="onOrderItemChange(' + idx + ')">' + selHtml + '</select></div>' +
-    '<div class="form-field" style="flex:0 0 80px"><input type="number" class="item-qty" value="' + (item?item.qty:1) + '" min="1" onchange="recalcOrderTotal()"></div>' +
-    '<div class="form-field" style="flex:0 0 100px"><input type="number" class="item-price" value="' + (item?item.price:'') + '" onchange="recalcOrderTotal()"></div>' +
-    '<div class="form-field" style="flex:0 0 90px"><span style="font-size:13px;color:var(--gray-600)" id="itemSubtotal' + idx + '">' + (item?fmtMoney(item.subtotal):'¥0.00') + '</span></div>' +
-    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:8px" onclick="this.closest(\'.order-item\').remove();recalcOrderTotal()">删除</button>' +
-  '</div>';
+  var svcId = (item&&item.serviceId) || '';
+  var svcName = (item&&item.name) || '';
+  var unitVal = (item&&item.unit) || '';
+  var specVal = (item&&item.spec) || '';
+  // 将serviceId编码到data属性中
+  return '<tr class="order-item" data-idx="' + idx + '" data-sid="' + svcId + '">' +
+    '<td style="text-align:center;color:var(--gray-500)">' + (idx + 1) + '</td>' +
+    '<td><input type="text" class="item-service" list="svcDatalist" value="' + svcName.replace(/"/g,'&quot;') + '" onchange="onServiceNameChange(' + idx + ')" onfocus="this.select()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px" autocomplete="off"></td>' +
+    '<td><input type="text" class="item-spec" value="' + specVal + '" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+    '<td><input type="text" class="item-unit" value="' + unitVal + '" readonly style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px;background:var(--gray-50);color:var(--gray-600)"></td>' +
+    '<td><input type="number" class="item-qty" value="' + (item?item.qty:1) + '" min="1" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+    '<td><input type="number" class="item-copies" value="' + (item&&item.copies?item.copies:1) + '" min="1" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+    '<td><input type="number" class="item-price" value="' + (item?item.price:'') + '" step="0.01" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+    '<td><input type="number" class="item-discount" value="' + (item&&item.discount?item.discount:'100') + '" min="0" max="100" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+    '<td style="font-weight:500;color:var(--primary);white-space:nowrap" class="item-subtotal">' + (item?fmtMoney(item.subtotal):'¥0.00') + '</td>' +
+    '<td><input type="text" class="item-remarks" value="' + (item&&item.remarks?item.remarks:'') + '" placeholder="备注" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+    '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">✕</button></td>' +
+  '</tr>';
 }
 
 function addOrderItemRow() {
   supabase.from('services').select('*').order('category,name').then(function(res) {
     var services = res.data || [];
+    // 先刷新全局 datalist
+    var dl = document.getElementById('svcDatalist');
+    if (dl) {
+      dl.innerHTML = services.map(function(s) {
+        return '<option value="' + s.name.replace(/"/g,'&quot;') + '">' + (s.category||'') + '</option>';
+      }).join('');
+    }
     var container = document.getElementById('orderItems');
     if (!container) return;
-    var idx = document.querySelectorAll('.order-item').length;
-    var div = document.createElement('div');
-    div.className = 'form-row order-item';
-    div.setAttribute('data-idx', idx);
-    div.style.alignItems = 'end';
-    div.style.marginBottom = '8px';
-    var selHtml = '<option value="">选择服务项目</option>';
-    services.forEach(function(s) {
-      var val = JSON.stringify({ id: s.id, name: s.name, price: s.price }).replace(/"/g, '&quot;');
-      selHtml += '<option value="' + val + '">' + s.category + ' - ' + s.name + ' (¥' + s.price + ')</option>';
-    });
-    div.innerHTML = '<div class="form-field"><select class="item-service" onchange="onOrderItemChange(' + idx + ')">' + selHtml + '</select></div>' +
-      '<div class="form-field" style="flex:0 0 80px"><input type="number" class="item-qty" value="1" min="1" onchange="recalcOrderTotal()"></div>' +
-      '<div class="form-field" style="flex:0 0 100px"><input type="number" class="item-price" value="0" onchange="recalcOrderTotal()"></div>' +
-      '<div class="form-field" style="flex:0 0 90px"><span style="font-size:13px;color:var(--gray-600)" id="itemSubtotal' + idx + '">¥0.00</span></div>' +
-      '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:8px" onclick="this.closest(\'.order-item\').remove();recalcOrderTotal()">删除</button>';
-    if (container.innerHTML.indexOf('暂无项目') >= 0) container.innerHTML = '';
-    container.appendChild(div);
+    if (container.querySelector('td[colspan]')) container.innerHTML = '';
+    var idx = container.querySelectorAll('.order-item').length;
+    var row = document.createElement('tr');
+    row.className = 'order-item';
+    row.setAttribute('data-idx', idx);
+    row.innerHTML = '<td style="text-align:center;color:var(--gray-500)">' + (idx + 1) + '</td>' +
+      '<td><input type="text" class="item-service" list="svcDatalist" value="" onchange="onServiceNameChange(' + idx + ')" onfocus="this.select()" placeholder="选择或输入服务名称" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px" autocomplete="off"></td>' +
+      '<td><input type="text" class="item-spec" value="" placeholder="规格" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+      '<td><input type="text" class="item-unit" value="" readonly style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px;background:var(--gray-50);color:var(--gray-600)"></td>' +
+      '<td><input type="number" class="item-qty" value="1" min="1" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+      '<td><input type="number" class="item-copies" value="1" min="1" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+      '<td><input type="number" class="item-price" value="0" step="0.01" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+      '<td><input type="number" class="item-discount" value="100" min="0" max="100" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+      '<td style="font-weight:500;color:var(--primary);white-space:nowrap" class="item-subtotal">¥0.00</td>' +
+      '<td><input type="text" class="item-remarks" placeholder="备注" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
+      '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">✕</button></td>';
+    container.appendChild(row);
+    renumberOrderItems();
   });
 }
 
-function onOrderItemChange(idx) {
+function onServiceNameChange(idx) {
   var row = document.querySelector('.order-item[data-idx="' + idx + '"]');
   if (!row) return;
-  var sel = row.querySelector('.item-service');
+  var svcInput = row.querySelector('.item-service');
   var priceInput = row.querySelector('.item-price');
-  try {
-    var val = sel.value;
-    if (val) {
-      var obj = JSON.parse(val.replace(/&quot;/g, '"'));
-      priceInput.value = obj.price;
-    }
-  } catch(e) {}
+  var specInput = row.querySelector('.item-spec');
+  var unitInput = row.querySelector('.item-unit');
+  var name = (svcInput.value||'').trim();
+  if (!name) return;
+  // 从全局缓存中查找匹配的服务
+  var services = window._allServices || [];
+  var found = null;
+  for (var i = 0; i < services.length; i++) {
+    if (services[i].name === name) { found = services[i]; break; }
+  }
+  if (found) {
+    row.setAttribute('data-sid', found.id);
+    priceInput.value = found.price;
+    if (specInput) specInput.value = found.spec||'';
+    if (unitInput) unitInput.value = found.unit||'';
+  } else {
+    row.setAttribute('data-sid', '');
+  }
   recalcOrderTotal();
+}
+
+function renumberOrderItems() {
+  var rows = document.querySelectorAll('.order-item');
+  rows.forEach(function(row, i) {
+    row.setAttribute('data-idx', i);
+    var numCell = row.querySelector('td:first-child');
+    if (numCell) numCell.textContent = i + 1;
+    // Update service name onchange
+    var svc = row.querySelector('.item-service');
+    if (svc) svc.setAttribute('onchange', 'onServiceNameChange(' + i + ')');
+  });
 }
 
 function recalcOrderTotal() {
@@ -1297,72 +1841,106 @@ function recalcOrderTotal() {
   var total = 0;
   rows.forEach(function(row) {
     var qty = Number(row.querySelector('.item-qty').value || 0);
+    var copies = row.querySelector('.item-copies');
+    var nCopies = copies ? Number(copies.value || 1) : 1;
     var price = Number(row.querySelector('.item-price').value || 0);
-    var sub = qty * price;
+    var discount = row.querySelector('.item-discount');
+    var nDiscount = discount ? Number(discount.value || 100) : 100;
+    var sub = qty * nCopies * price * nDiscount / 100;
     total += sub;
-    var idx = row.getAttribute('data-idx');
-    var subEl = document.getElementById('itemSubtotal' + idx);
+    var subEl = row.querySelector('.item-subtotal');
     if (subEl) subEl.textContent = fmtMoney(sub);
   });
   var totalEl = document.getElementById('orderTotal');
-  if (totalEl) totalEl.textContent = '合计：' + fmtMoney(total);
+  if (totalEl) totalEl.textContent = '本单合计：' + fmtMoney(total);
 }
 
-function saveOrder(id) {
+function saveOrder(id, newOrderId) {
   var customerId = document.getElementById('o_customer').value;
   if (!customerId) { alert('请选择客户'); return; }
   var rows = document.querySelectorAll('.order-item');
   if (!rows.length) { alert('请至少添加一个订单项目'); return; }
   var items = [];
   rows.forEach(function(row) {
-    var sel = row.querySelector('.item-service');
+    var svcInput = row.querySelector('.item-service');
     var qty = Number(row.querySelector('.item-qty').value || 0);
+    var copies = row.querySelector('.item-copies');
+    var nCopies = copies ? Number(copies.value || 1) : 1;
     var price = Number(row.querySelector('.item-price').value || 0);
-    try {
-      var val = sel.value;
-      if (val) {
-        var obj = JSON.parse(val.replace(/&quot;/g, '"'));
-        items.push({ serviceId: obj.id, name: obj.name, unit: '', qty: qty, price: price, subtotal: qty * price });
-      }
-    } catch(e) {}
+    var discount = row.querySelector('.item-discount');
+    var nDiscount = discount ? Number(discount.value || 100) : 100;
+    var spec = row.querySelector('.item-spec');
+    var unit = row.querySelector('.item-unit');
+    var remarks = row.querySelector('.item-remarks');
+    var svcName = svcInput ? (svcInput.value||'').trim() : '';
+    var sid = row.getAttribute('data-sid') || '';
+    if (svcName) {
+      items.push({
+        serviceId: sid, name: svcName,
+        spec: spec ? spec.value : '',
+        unit: unit ? unit.value : '',
+        qty: qty, copies: nCopies, price: price,
+        discount: nDiscount,
+        subtotal: qty * nCopies * price * nDiscount / 100,
+        remarks: remarks ? remarks.value : ''
+      });
+    }
   });
   var subtotal = 0;
   items.forEach(function(i) { subtotal += i.subtotal; });
-  supabase.from('customers').select('name').eq('id', customerId).single().then(function(cRes) {
-    var customerName = cRes.data ? cRes.data.name : '';
-    var orderData = {
-      customer_id: customerId,
-      customer_name: customerName,
-      status: document.getElementById('o_status').value,
-      due_date: document.getElementById('o_due_date').value ? new Date(document.getElementById('o_due_date').value).toISOString() : null,
-      items: items,
-      subtotal: subtotal,
-      discount: 0,
-      total: subtotal,
-      paid: id ? 0 : 0,
-      balance: subtotal,
-      remark: (document.getElementById('o_remark').value||'').trim(),
-    };
-    if (id) {
-      supabase.from('orders').update(orderData).eq('id', id).then(function(res) {
-        if (res.error) { toast('保存失败：' + res.error.message, 'error'); return; }
-        toast('订单已更新');
-        addNotification('订单 ' + id + ' 已更新');
-        closeModal('orderModal');
-        renderOrders();
-      });
-    } else {
-      supabase.from('orders').select('id').order('id', { ascending: false }).limit(1).then(function(r2) {
-        var maxId = 0;
-        if (r2.data && r2.data.length) {
-          var n = parseInt((r2.data[0].id||'').replace('ORD',''));
-          if (!isNaN(n)) maxId = n;
-        }
-        orderData.id = 'ORD' + String(maxId + 1).padStart(7, '0');
+
+  // 检查是否已结算 - 已结算的不允许更新
+  if (id) {
+    supabase.from('orders').select('balance').eq('id', id).single().then(function(checkRes) {
+      if (checkRes.data && Number(checkRes.data.balance||0) <= 0) {
+        toast('已结算订单不可修改', 'error');
+        return;
+      }
+      doSaveOrder();
+    });
+  } else {
+    doSaveOrder();
+  }
+
+  function doSaveOrder() {
+    supabase.from('customers').select('name').eq('id', customerId).single().then(function(cRes) {
+      var customerName = cRes.data ? cRes.data.name : '';
+      var orderData = {
+        customer_id: customerId,
+        customer_name: customerName,
+        contact: (document.getElementById('o_contact').value||'').trim(),
+        order_date: document.getElementById('o_order_date').value,
+        project_name: (document.getElementById('o_project_name').value||'').trim(),
+        requirement: (document.getElementById('o_requirement').value||'').trim(),
+        status: document.getElementById('o_status').value,
+        items: items,
+        subtotal: subtotal,
+        discount: 0,
+        total: subtotal,
+        remark: (document.getElementById('o_remark').value||'').trim(),
+      };
+      if (id) {
+        // 编辑：保留原有财务数据，仅更新订单信息
+        supabase.from('orders').select('paid,balance').eq('id', id).single().then(function(finRes) {
+          if (finRes.data) {
+            orderData.paid = Number(finRes.data.paid||0);
+            orderData.balance = subtotal - orderData.paid;
+          }
+          supabase.from('orders').update(orderData).eq('id', id).then(function(res) {
+            if (res.error) { toast('保存失败：' + res.error.message, 'error'); return; }
+            toast('订单已更新');
+            addNotification('订单 ' + id + ' 已更新');
+            closeModal('orderModal');
+            renderOrders();
+          });
+        });
+      } else {
+        // 新建：使用预设的订单编号
+        orderData.id = newOrderId;
         orderData.paid = 0;
         orderData.balance = subtotal;
         orderData.created_at = new Date().toISOString();
-        orderData.created_by = currentUser.email; // RLS：记录创建者
+        orderData.created_by = currentUser.email;
         supabase.from('orders').insert([orderData]).then(function(r3) {
           if (r3.error) { toast('保存失败：' + r3.error.message, 'error'); return; }
           toast('订单创建成功');
@@ -1370,59 +1948,129 @@ function saveOrder(id) {
           closeModal('orderModal');
           renderOrders();
         });
-      });
-    }
-  });
+      }
+    });
+  }
 }
 
 function deleteOrder(id) {
-  if (!confirm('确认删除该订单？')) return;
-  supabase.from('orders').delete().eq('id', id).then(function(res) {
-    if (res.error) { toast('删除失败：' + res.error.message, 'error'); return; }
-    toast('订单已删除');
-    renderOrders();
+  supabase.from('orders').select('balance,status').eq('id', id).single().then(function(res) {
+    if (res.data && Number(res.data.balance||0) <= 0 && res.data.status !== 'cancelled') {
+      toast('已结算订单不可删除', 'error');
+      return;
+    }
+    if (!confirm('确认删除该订单？')) return;
+    supabase.from('orders').delete().eq('id', id).then(function(res2) {
+      if (res2.error) { toast('删除失败：' + res2.error.message, 'error'); return; }
+      toast('订单已删除');
+      renderOrders();
+    });
   });
 }
 
 // ============================================================
-//  服务项目
+//  服务项目（优化版）
 // ============================================================
+function getServiceCategories() {
+  try { return JSON.parse(localStorage.getItem('erp_categories') || '["喷绘写真","印刷品","标识标牌","车身广告","设计服务","装裱装订"]'); } catch(e) { return ['喷绘写真','印刷品','标识标牌','车身广告','设计服务','装裱装订']; }
+}
+
+function saveServiceCategories(cats) {
+  try { localStorage.setItem('erp_categories', JSON.stringify(cats)); } catch(e) {}
+}
+
 function renderServices() {
   var content = document.getElementById('pageContent');
   content.innerHTML = '<div class="loading-mask">加载中...</div>';
 
   supabase.from('services').select('*').order('category,name').then(function(res) {
     var list = res.data || [];
-    var categories = {};
-    list.forEach(function(s) {
-      if (!categories[s.category]) categories[s.category] = [];
-      categories[s.category].push(s);
-    });
 
-    var html = '<div class="card"><div class="toolbar">' +
-      '<span style="color:var(--gray-500);font-size:13px">共 ' + list.length + ' 个服务项目</span>' +
-      (isAdmin() ? '<button class="btn btn-primary" onclick="openServiceModal()">+ 新增项目</button>' : '') +
-      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">🖨️</button>' +
-      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'服务项目\')" title="导出CSV">📥</button>' +
-      '</div>';
+    var html = '<div class="card">' +
+      '<div class="toolbar">' +
+        '<span style="color:var(--gray-500);font-size:13px">共 ' + list.length + ' 个服务项目</span>' +
+        (isAdmin() ? '<button class="btn btn-primary" onclick="openServiceModal()">+ 新增项目</button>' : '') +
+        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="importServices()">📥 导入</button>' : '') +
+        '<button class="btn btn-outline btn-sm" onclick="exportCSV(\'servicesTable\',\'服务项目\')">📤 导出</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">🖨️</button>' +
+        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="manageCategories()">📂 管理分类</button>' : '') +
+      '</div>' +
+      '<div class="table-wrap">' +
+        '<table id="servicesTable"><thead><tr><th>服务项类型</th><th>服务项目名称</th><th>规格</th><th>单位</th><th>单价</th><th>操作</th></tr></thead><tbody>';
 
-    Object.keys(categories).forEach(function(cat) {
-      html += '<div style="margin-bottom:20px"><div style="font-weight:600;color:var(--gray-700);margin-bottom:10px;font-size:14px">' + cat + '</div>' +
-        '<div class="table-wrap"><table><thead><tr><th>项目名称</th><th>单价</th><th>单位</th><th>规格</th><th>操作</th></tr></thead><tbody>';
-      categories[cat].forEach(function(s) {
-        html += '<tr><td><strong>' + s.name + '</strong></td><td style="font-weight:500;color:var(--primary)">' + fmtMoney(s.price) + '</td><td>' + (s.unit||'-') + '</td><td>' + (s.spec||'-') + '</td>' +
+    if (list.length) {
+      list.forEach(function(s) {
+        html += '<tr>' +
+          '<td>' + (s.category||'-') + '</td>' +
+          '<td><strong>' + s.name + '</strong></td>' +
+          '<td>' + (s.spec||'-') + '</td>' +
+          '<td>' + (s.unit||'-') + '</td>' +
+          '<td style="font-weight:500;color:var(--primary)">' + fmtMoney(s.price) + '</td>' +
           '<td><div style="display:flex;gap:4px">' +
             (isAdmin() ? '<button class="btn btn-ghost btn-sm" onclick="openServiceModal(\'' + s.id + '\')">编辑</button>' : '') +
             (isAdmin() ? '<button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="deleteService(\'' + s.id + '\')">删除</button>' : '') +
-          '</div></td></tr>';
+          '</div></td>' +
+        '</tr>';
       });
-      html += '</tbody></table></div></div>';
-    });
+    } else {
+      html += '<tr><td colspan="6"><div class="empty-state"><p>暂无服务项目，请点击上方按钮添加</p></div></td></tr>';
+    }
 
-    if (!list.length) html += '<div class="empty-state"><p>暂无服务项目，请点击上方按钮添加</p></div>';
-    html += '</div>';
+    html += '</tbody></table></div></div>';
     content.innerHTML = html;
   });
+}
+
+// 分类管理弹窗
+function manageCategories() {
+  var cats = getServiceCategories();
+  var modalId = 'categoryModal';
+  var listHtml = cats.map(function(c, i) {
+    return '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--gray-100)">' +
+      '<span style="flex:1">' + c + '</span>' +
+      '<button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="removeCategory(' + i + ')">删除</button>' +
+    '</div>';
+  }).join('');
+  var html = '<div class="modal-overlay open" id="' + modalId + '">' +
+    '<div class="modal" style="width:450px">' +
+      '<div class="modal-header">' +
+        '<span class="modal-title">管理服务分类</span>' +
+        '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>' +
+      '</div>' +
+      '<div class="modal-body">' +
+        '<div style="display:flex;gap:8px;margin-bottom:16px">' +
+          '<input type="text" id="newCategoryName" placeholder="输入新分类名称" style="flex:1;padding:8px 12px;border:1.5px solid var(--gray-200);border-radius:6px;font-size:13px">' +
+          '<button class="btn btn-primary btn-sm" onclick="addNewCategory()">添加</button>' +
+        '</div>' +
+        '<div id="categoryList">' + listHtml + '</div>' +
+      '</div>' +
+      '<div class="modal-footer">' +
+        '<button class="btn btn-outline" onclick="closeModal(\'' + modalId + '\')">关闭</button>' +
+      '</div>' +
+    '</div></div>';
+  document.getElementById('modals').innerHTML = html;
+}
+
+function addNewCategory() {
+  var input = document.getElementById('newCategoryName');
+  var name = (input.value||'').trim();
+  if (!name) { alert('请输入分类名称'); return; }
+  var cats = getServiceCategories();
+  if (cats.indexOf(name) >= 0) { alert('该分类已存在'); return; }
+  cats.push(name);
+  saveServiceCategories(cats);
+  input.value = '';
+  manageCategories();
+  toast('分类已添加');
+}
+
+function removeCategory(idx) {
+  var cats = getServiceCategories();
+  if (!confirm('确认删除分类「' + cats[idx] + '」？已有项目的分类不受影响。')) return;
+  cats.splice(idx, 1);
+  saveServiceCategories(cats);
+  manageCategories();
+  toast('分类已删除');
 }
 
 function openServiceModal(id) {
@@ -1437,7 +2085,11 @@ function openServiceModal(id) {
 }
 
 function showServiceModal(s, isEdit) {
+  var cats = getServiceCategories();
   var modalId = 'serviceModal';
+  var catOptions = cats.map(function(c) {
+    return '<option value="' + c + '"' + (s&&s.category===c?' selected':'') + '>' + c + '</option>';
+  }).join('');
   var html = '<div class="modal-overlay open" id="' + modalId + '">' +
     '<div class="modal">' +
       '<div class="modal-header">' +
@@ -1449,12 +2101,7 @@ function showServiceModal(s, isEdit) {
           '<div class="form-field"><label>分类 <span class="required">*</span></label>' +
             '<select id="s_category">' +
               '<option value="">请选择</option>' +
-              '<option value="喷绘写真"' + (s&&s.category==='喷绘写真'?' selected':'') + '>喷绘写真</option>' +
-              '<option value="印刷品"' + (s&&s.category==='印刷品'?' selected':'') + '>印刷品</option>' +
-              '<option value="标识标牌"' + (s&&s.category==='标识标牌'?' selected':'') + '>标识标牌</option>' +
-              '<option value="车身广告"' + (s&&s.category==='车身广告'?' selected':'') + '>车身广告</option>' +
-              '<option value="设计服务"' + (s&&s.category==='设计服务'?' selected':'') + '>设计服务</option>' +
-              '<option value="装裱装订"' + (s&&s.category==='装裱装订'?' selected':'') + '>装裱装订</option>' +
+              catOptions +
             '</select></div>' +
           '<div class="form-field"><label>项目名称 <span class="required">*</span></label><input type="text" id="s_name" value="' + (s?(s.name||''):'') + '" placeholder="如：普通写真(室内)"></div>' +
         '</div>' +
@@ -1471,6 +2118,65 @@ function showServiceModal(s, isEdit) {
     '</div>' +
   '</div>';
   document.getElementById('modals').innerHTML = html;
+}
+
+// CSV 导入服务项目
+function importServices() {
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.csv';
+  input.onchange = function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(evt) {
+      processServicesImport(evt.target.result);
+    };
+    reader.readAsText(file, 'UTF-8');
+  };
+  input.click();
+}
+
+function processServicesImport(text) {
+  var lines = text.split(/\r?\n/).filter(function(l) { return l.trim(); });
+  if (lines.length < 2) { toast('CSV格式不正确，至少需要表头+一行数据', 'error'); return; }
+  if (lines[0].charCodeAt(0) === 0xFEFF) lines[0] = lines[0].slice(1);
+  var headers = lines[0].split(',').map(function(h) { return h.replace(/"/g,'').trim(); });
+  var cats = getServiceCategories();
+  var imported = 0;
+  var errors = [];
+  (function processLine(i) {
+    if (i >= lines.length) {
+      toast('导入完成：成功 ' + imported + ' 条' + (errors.length ? '，失败 ' + errors.length + ' 条' : ''));
+      if (errors.length) { console.log('导入错误：', errors); }
+      renderServices();
+      return;
+    }
+    var cols = lines[i].split(',').map(function(c) { return c.replace(/"/g,'').trim(); });
+    if (!cols[1]) { processLine(i + 1); return; }
+    var category = cols[0] || '喷绘写真';
+    if (cats.indexOf(category) < 0) { cats.push(category); saveServiceCategories(cats); }
+    var data = {
+      category: category,
+      name: cols[1] || '',
+      spec: cols[2] || '',
+      unit: cols[3] || '',
+      price: Number(cols[4] || 0),
+    };
+    supabase.from('services').select('id').order('id', { ascending: false }).limit(1).then(function(res) {
+      var maxId = 0;
+      if (res.data && res.data.length) {
+        var n = parseInt((res.data[0].id||'').replace('S',''));
+        if (!isNaN(n)) maxId = n;
+      }
+      data.id = 'S' + String(maxId + 1 + imported).padStart(3, '0');
+      supabase.from('services').insert([data]).then(function(r2) {
+        if (r2.error) { errors.push('行 ' + (i+1) + ': ' + r2.error.message); }
+        else { imported++; }
+        processLine(i + 1);
+      });
+    });
+  })(1);
 }
 
 function saveService(id) {
@@ -1641,11 +2347,11 @@ function savePayment(orderId) {
       };
       var newPaid = Number(order.paid || 0) + amount;
       var newBalance = Number(order.total || 0) - newPaid;
-      var newStatus = newBalance <= 0 ? 'completed' : order.status;
+      // 付款不影响生产状态，状态由人工更新
 
       supabase.from('payments').insert([payment]).then(function(r3) {
         if (r3.error) { toast('收款失败：' + r3.error.message, 'error'); return; }
-        supabase.from('orders').update({ paid: newPaid, balance: newBalance, status: newStatus }).eq('id', orderId).then(function(r4) {
+        supabase.from('orders').update({ paid: newPaid, balance: newBalance }).eq('id', orderId).then(function(r4) {
           if (r4.error) { toast('更新订单失败：' + r4.error.message, 'error'); return; }
           supabase.from('customers').select('balance,id').eq('id', order.customer_id).single().then(function(r5) {
             if (r5.data) {
@@ -1660,6 +2366,390 @@ function savePayment(orderId) {
     });
   });
 }
+
+// ============================================================
+//  员工管理（仅管理员可见）
+// ============================================================
+function renderEmployees() {
+  if (!isAdmin()) { toast('仅管理员可访问', 'error'); switchPage('dashboard'); return; }
+  var content = document.getElementById('pageContent');
+  content.innerHTML = '<div class="loading-mask">加载中...</div>';
+
+  supabase.rpc('list_users').then(function(res) {
+    var users = [];
+    if (!res.error && res.data) {
+      users = res.data.map(function(u) {
+        var meta = u.raw_user_meta_data || {};
+        return { id: u.id, username: meta.username || '', name: meta.name || '', role: meta.role || 'staff', created_at: u.created_at };
+      });
+    }
+    // Fallback: use auth admin list if available
+    if (!users.length && !res.error) {
+      // Try to fetch from a profiles view/table
+      supabase.from('profiles').select('*').order('created_at', { ascending: false }).then(function(pRes) {
+        renderEmployeesTable(pRes.data || []);
+      });
+    } else {
+      renderEmployeesTable(users);
+    }
+  }).catch(function() {
+    // Fallback to profiles table
+    supabase.from('profiles').select('*').order('created_at', { ascending: false }).then(function(pRes) {
+      renderEmployeesTable(pRes.data || []);
+    });
+  });
+}
+
+function renderEmployeesTable(users) {
+  var content = document.getElementById('pageContent');
+  var html = '<div class="card">' +
+    '<div class="toolbar">' +
+      '<span style="color:var(--gray-500);font-size:13px">共 ' + users.length + ' 名员工</span>' +
+      '<button class="btn btn-primary" onclick="openEmployeeModal()">+ 添加员工</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">🖨️ 打印</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'员工列表\')">📥 导出</button>' +
+    '</div>' +
+    '<div class="table-wrap">' +
+      '<table><thead><tr><th>姓名</th><th>账号名</th><th>角色</th><th>创建时间</th><th>操作</th></tr></thead><tbody>';
+  if (users.length) {
+    users.forEach(function(u) {
+      var roleName = ROLES[u.role] || u.role || '-';
+      var isSelf = currentUser && currentUser.id === u.id;
+      html += '<tr>' +
+        '<td><div style="display:flex;align-items:center;gap:10px">' +
+          '<div class="avatar" style="background:' + avatarColor(u.name||u.username) + ';color:#fff">' + ((u.name||u.username||'?')[0]||'').toUpperCase() + '</div>' +
+          '<div style="font-weight:500">' + (u.name||'-') + (isSelf?' <span style="font-size:11px;color:var(--gray-400)">(我)</span>':'') + '</div>' +
+        '</div></td>' +
+        '<td>' + (u.username||'-') + '</td>' +
+        '<td><span class="badge ' + (u.role==='admin'?'badge-green':u.role==='finance'?'badge-blue':u.role==='operator'?'badge-cyan':'badge-yellow') + '">' + roleName + '</span></td>' +
+        '<td>' + fmtDate(u.created_at) + '</td>' +
+        '<td><div style="display:flex;gap:4px">' +
+          (isSelf ? '<span style="color:var(--gray-400);font-size:12px">当前用户</span>' :
+            '<button class="btn btn-ghost btn-sm" onclick="openEmployeeModal(\'' + u.id + '\',\'' + (u.username||'').replace(/'/g,"\\'") + '\',\'' + (u.name||'').replace(/'/g,"\\'") + '\',\'' + (u.role||'staff') + '\')">编辑</button>' +
+            '<button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="deleteEmployee(\'' + u.id + '\')">删除</button>') +
+        '</div></td>' +
+      '</tr>';
+    });
+  } else {
+    html += '<tr><td colspan="5"><div class="empty-state"><p>暂无员工数据</p><p style="font-size:12px;color:var(--gray-400)">请在 Supabase 中创建 profiles 表，或通过注册页面添加用户</p></div></td></tr>';
+  }
+  html += '</tbody></table></div></div>';
+  content.innerHTML = html;
+}
+
+function openEmployeeModal(id, username, name, role) {
+  var isEdit = !!id;
+  var modalId = 'employeeModal';
+  var html = '<div class="modal-overlay open" id="' + modalId + '">' +
+    '<div class="modal" style="width:500px">' +
+      '<div class="modal-header">' +
+        '<span class="modal-title">' + (isEdit ? '编辑员工 - ' + (name||username) : '添加员工') + '</span>' +
+        '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>' +
+      '</div>' +
+      '<div class="modal-body">';
+  if (isEdit) {
+    html += '<div class="form-row">' +
+      '<div class="form-field"><label>姓名</label><input type="text" id="emp_name" value="' + (name||'') + '" readonly style="background:var(--gray-50)"></div>' +
+      '<div class="form-field"><label>账号名</label><input type="text" id="emp_username" value="' + (username||'') + '" readonly style="background:var(--gray-50)"></div>' +
+    '</div>' +
+    '<div class="form-field"><label>角色 <span class="required">*</span></label>' +
+      '<select id="emp_role">' +
+        '<option value="admin"' + (role==='admin'?' selected':'') + '>超级管理员</option>' +
+        '<option value="staff"' + (role==='staff'?' selected':'') + '>业务员</option>' +
+        '<option value="finance"' + (role==='finance'?' selected':'') + '>财务</option>' +
+        '<option value="operator"' + (role==='operator'?' selected':'') + '>操作员</option>' +
+      '</select></div>' +
+    '<div style="margin-top:8px;color:var(--gray-500);font-size:12px">⚠ 修改角色将影响该员工的系统访问权限</div>';
+  } else {
+    html += '<div class="form-field"><label>账号名 <span class="required">*</span></label><input type="text" id="emp_username" placeholder="仅限字母、数字、下划线"></div>' +
+    '<div class="form-field"><label>姓名 <span class="required">*</span></label><input type="text" id="emp_name" placeholder="显示用姓名"></div>' +
+    '<div class="form-field"><label>密码 <span class="required">*</span></label><input type="password" id="emp_pass" placeholder="至少6位"></div>' +
+    '<div class="form-field"><label>角色 <span class="required">*</span></label>' +
+      '<select id="emp_role">' +
+        '<option value="staff">业务员</option>' +
+        '<option value="finance">财务</option>' +
+        '<option value="operator">操作员</option>' +
+      '</select></div>';
+  }
+  html += '</div>' +
+    '<div class="modal-footer">' +
+      '<button class="btn btn-outline" onclick="closeModal(\'' + modalId + '\')">取消</button>' +
+      '<button class="btn btn-primary" onclick="saveEmployee(\'' + (id||'') + '\',\'' + (isEdit?(role||'staff'):'') + '\')">保存</button>' +
+    '</div>' +
+    '</div></div>';
+  document.getElementById('modals').innerHTML = html;
+}
+
+function saveEmployee(id, oldRole) {
+  if (id) {
+    // 编辑现有员工：更新 profiles 表中的 role
+    var newRole = document.getElementById('emp_role').value;
+    if (newRole === oldRole) { closeModal('employeeModal'); return; }
+    supabase.from('profiles').update({ role: newRole }).eq('id', id).then(function(res) {
+      if (res.error) { toast('更新失败：' + res.error.message, 'error'); return; }
+      // 同时尝试通过函数更新 auth metadata（如果支持）
+      toast('员工角色已更新');
+      addNotification('员工角色变更：' + newRole);
+      closeModal('employeeModal');
+      renderEmployees();
+    });
+  } else {
+    // 新增员工：注册新账号
+    var username = document.getElementById('emp_username').value.trim();
+    var name = document.getElementById('emp_name').value.trim();
+    var pass = document.getElementById('emp_pass').value;
+    var role = document.getElementById('emp_role').value;
+    if (!username || !name || !pass) { alert('请填写所有必填项'); return; }
+    if (!/^[a-zA-Z0-9_\-]{2,30}$/.test(username)) { alert('账号名只能包含字母、数字、下划线，长度2-30位'); return; }
+    if (pass.length < 6) { alert('密码至少6位'); return; }
+    var email = usernameToEmail(username);
+    supabase.auth.signUp({
+      email: email,
+      password: pass,
+      options: { data: { name: name, username: username, role: role } }
+    }).then(function(res) {
+      if (res.error) {
+        var msg = res.error.message;
+        if (msg.indexOf('already') !== -1 || msg.indexOf('exists') !== -1) {
+          alert('该账号名已被注册，请换一个');
+        } else {
+          alert('注册失败：' + msg);
+        }
+        return;
+      }
+      toast('员工 ' + name + ' 添加成功');
+      addNotification('新员工注册：' + name);
+      closeModal('employeeModal');
+      renderEmployees();
+    });
+  }
+}
+
+function deleteEmployee(id) {
+  if (!confirm('确认删除该员工？此操作不可撤销！')) return;
+  supabase.from('profiles').delete().eq('id', id).then(function(res) {
+    if (res.error) { toast('删除失败：' + res.error.message, 'error'); return; }
+    toast('员工已删除');
+    addNotification('员工账号已删除');
+    renderEmployees();
+  });
+}
+// ============================================================
+//  电子签名功能
+// ============================================================
+
+// 生成签名 token 并复制到剪贴板
+function sendSignLink(orderId) {
+  if (!orderId) return;
+  // 生成 32 位随机 token
+  var token = '';
+  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (var i = 0; i < 32; i++) token += chars.charAt(Math.floor(Math.random() * chars.length));
+  // 过期时间：7 天后
+  var d = new Date();
+  d.setDate(d.getDate() + 7);
+  var expire = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  supabase.from('orders').update({ sign_token: token, sign_token_expire: expire }).eq('id', orderId).then(function(res) {
+    if (res.error) { toast('生成链接失败：' + res.error.message, 'error'); return; }
+    var url = 'https://fztwgg.github.io/erp-system/?sign=' + token;
+    // 复制到剪贴板
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(function() {
+        toast('签字链接已复制！发给客户即可', 'success');
+      }).catch(function() {
+        prompt('复制签字链接：', url);
+      });
+    } else {
+      prompt('复制签字链接：', url);
+    }
+  });
+}
+
+// 查看签字图片
+function viewSignature(orderId) {
+  supabase.from('orders').select('signature,customer_name,id').eq('id', orderId).single().then(function(res) {
+    if (res.error || !res.data) { toast('未找到订单', 'error'); return; }
+    var o = res.data;
+    if (!o.signature) { toast('该订单暂无签字', 'error'); return; }
+    var modalId = 'sigViewModal';
+    var html = '<div class="modal-overlay open" id="' + modalId + '" onclick="if(event.target===this)closeModal(\'' + modalId + '\')">' +
+      '<div class="modal" style="max-width:600px">' +
+        '<div class="modal-header"><span class="modal-title">客户签字 - ' + (o.customer_name||'') + '</span>' +
+          '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')">✕</button>' +
+        '</div>' +
+        '<div class="modal-body" style="text-align:center;padding:24px">' +
+          '<img src="' + o.signature + '" style="max-width:100%;border:1px solid var(--gray-200);border-radius:8px">' +
+          '<p style="margin-top:12px;color:var(--gray-500);font-size:13px">订单号：' + o.id + '</p>' +
+        '</div>' +
+        '<div class="modal-footer">' +
+          '<button class="btn btn-outline" onclick="closeModal(\'' + modalId + '\')">关闭</button>' +
+          '<a class="btn btn-primary" href="' + o.signature + '" download="签字_' + o.id + '.png" style="text-decoration:none">下载签字图片</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+    document.getElementById('modals').innerHTML = html;
+  });
+}
+
+// ============================================================
+//  签名页（公共页，无需登录，通过 ?sign=token 访问）
+// ============================================================
+function initSignPage(token) {
+  // 隐藏登录页和主界面
+  document.getElementById('loginPage').style.display = 'none';
+  var appEl = document.getElementById('app');
+  if (appEl) appEl.style.display = 'none';
+
+  // 查询 token 对应的订单
+  supabase.from('orders').select('id,customer_name,total,items,sign_token_expire,signature').eq('sign_token', token).single().then(function(res) {
+    if (res.error || !res.data) {
+      showSignError('签名链接无效或已使用，请联系商家重新发送。');
+      return;
+    }
+    var o = res.data;
+    // 检查是否过期
+    var expire = o.sign_token_expire || '';
+    var today = new Date().toISOString().slice(0,10);
+    if (expire < today) {
+      showSignError('签名链接已过期，请联系商家重新发送。');
+      return;
+    }
+    // 检查是否已签字
+    if (o.signature) {
+      showSignSuccess(o);
+      return;
+    }
+    renderSignPage(o, token);
+  });
+}
+
+function showSignError(msg) {
+  document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
+    '<div><div style="font-size:64px;margin-bottom:16px">😟</div>' +
+    '<h2 style="color:#333">无法加载签名页</h2>' +
+    '<p style="color:#666;margin-top:8px">' + msg + '</p></div></div>';
+}
+
+function showSignSuccess(o) {
+  document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
+    '<div><div style="font-size:64px;margin-bottom:16px">✅</div>' +
+    '<h2 style="color:#333">已签字</h2>' +
+    '<p style="color:#666;margin-top:8px">订单 ' + o.id + ' 的签字已提交，感谢您的确认。</p>' +
+    '<div style="margin-top:24px"><img src="' + o.signature + '" style="max-width:300px;border:1px solid #ddd;border-radius:8px"></div></div></div>';
+}
+
+function renderSignPage(o, token) {
+  document.body.innerHTML = '<div id="signPage" style="font-family:sans-serif;max-width:800px;margin:0 auto;padding:24px">' +
+    '<div style="text-align:center;margin-bottom:24px">' +
+      '<h2 style="color:#333">客户签字确认</h2>' +
+      '<p style="color:#666;font-size:14px">订单号：' + o.id + ' | 客户：' + (o.customer_name||'') + ' | 金额：¥' + Number(o.total||0).toFixed(2) + '</p>' +
+    '</div>' +
+    '<div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.08);padding:16px">' +
+      '<p style="font-size:13px;color:#666;margin-bottom:8px">请在下方区域手写签名（支持触屏/鼠标）：</p>' +
+      '<div style="position:relative;border:2px dashed var(--gray-300);border-radius:8px;background:#fafafa">' +
+        '<canvas id="signCanvas" width="760" height="260" style="width:100%;height:auto;cursor:crosshair;touch-action:none"></canvas>' +
+      '</div>' +
+      '<div style="display:flex;gap:8px;margin-top:12px;justify-content:center">' +
+        '<button id="signClearBtn" style="padding:8px 24px;border:1px solid var(--gray-300);background:#fff;border-radius:6px;cursor:pointer;font-size:14px">清除重签</button>' +
+        '<button id="signSubmitBtn" style="padding:8px 32px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:500">确认提交签字</button>' +
+      '</div>' +
+    '</div>' +
+    '<p style="text-align:center;color:var(--gray-400);font-size:12px;margin-top:16px">签字提交后不可修改，请确认无误后再提交</p>' +
+  '</div>';
+
+  // 初始化 Canvas 签名
+  initSignCanvas(token);
+}
+
+function initSignCanvas(token) {
+  var canvas = document.getElementById('signCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  ctx.strokeStyle = '#222';
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  var drawing = false;
+  var lastX = 0, lastY = 0;
+
+  function getPos(e) {
+    var rect = canvas.getBoundingClientRect();
+    var touch = e.touches ? e.touches[0] : e;
+    var scaleX = canvas.width / rect.width;
+    var scaleY = canvas.height / rect.height;
+    return {
+      x: (touch.clientX - rect.left) * scaleX,
+      y: (touch.clientY - rect.top) * scaleY
+    };
+  }
+
+  function startDraw(e) {
+    e.preventDefault();
+    drawing = true;
+    var p = getPos(e);
+    lastX = p.x; lastY = p.y;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+  }
+  function draw(e) {
+    e.preventDefault();
+    if (!drawing) return;
+    var p = getPos(e);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    lastX = p.x; lastY = p.y;
+  }
+  function endDraw() { drawing = false; }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', endDraw);
+  canvas.addEventListener('mouseleave', endDraw);
+  canvas.addEventListener('touchstart', startDraw, { passive: false });
+  canvas.addEventListener('touchmove', draw, { passive: false });
+  canvas.addEventListener('touchend', endDraw);
+
+  // 清除按钮
+  document.getElementById('signClearBtn').onclick = function() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  };
+
+  // 提交按钮
+  document.getElementById('signSubmitBtn').onclick = function() {
+    // 检查是否有签字（检查 canvas 是否空白）
+    var blank = document.createElement('canvas');
+    blank.width = canvas.width; blank.height = canvas.height;
+    if (canvas.toDataURL() === blank.toDataURL()) {
+      alert('请先手写签名后再提交！');
+      return;
+    }
+    var dataURL = canvas.toDataURL('image/png');
+    // 提交到 Supabase
+    this.textContent = '提交中...';
+    this.disabled = true;
+    supabase.from('orders').update({
+      signature: dataURL,
+      sign_token: null,
+      sign_token_expire: null
+    }).eq('sign_token', token).then(function(res) {
+      if (res.error) {
+        alert('提交失败：' + res.error.message);
+        this.textContent = '确认提交签字';
+        this.disabled = false;
+        return;
+      }
+      // 显示成功页
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
+        '<div><div style="font-size:64px;margin-bottom:16px">✅</div>' +
+        '<h2 style="color:#333">签字已提交</h2>' +
+        '<p style="color:#666;margin-top:8px">感谢您的确认，签字已保存到订单。</p></div></div>';
+    }.bind(this));
+  };
+}
 </script>
 </body>
 </html>
+
+
+
