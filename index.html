@@ -2717,7 +2717,6 @@ function initSignCanvas(token) {
 
   // 提交按钮
   document.getElementById('signSubmitBtn').onclick = function() {
-    // 检查是否有签字（检查 canvas 是否空白）
     var blank = document.createElement('canvas');
     blank.width = canvas.width; blank.height = canvas.height;
     if (canvas.toDataURL() === blank.toDataURL()) {
@@ -2725,21 +2724,24 @@ function initSignCanvas(token) {
       return;
     }
     var dataURL = canvas.toDataURL('image/png');
-    // 提交到 Supabase
     this.textContent = '提交中...';
     this.disabled = true;
-    supabase.from('orders').update({
-      signature: dataURL,
-      sign_token: null,
-      sign_token_expire: null
-    }).eq('sign_token', token).then(function(res) {
+    supabase.from('orders').update, {
+      p_token: token,
+      p_signature: dataURL
+    }).then(function(res) {
       if (res.error) {
         alert('提交失败：' + res.error.message);
         this.textContent = '确认提交签字';
         this.disabled = false;
         return;
       }
-      // 显示成功页
+
+
+        this.textContent = '确认提交签字';
+        this.disabled = false;
+        return;
+      }
       document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
         '<div><div style="font-size:64px;margin-bottom:16px">✅</div>' +
         '<h2 style="color:#333">签字已提交</h2>' +
