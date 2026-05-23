@@ -414,26 +414,14 @@
 </div>
 </nav>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 <script>
 // ============================================================
 //  Supabase 初始化
 // ============================================================
 const SUPABASE_URL = 'https://igwwccxziljzwzskwmdw.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_t5AXcqBxnkEBxJx3ORMvWA_0LTJ4VYn';
-
-// 动态加载 Supabase JS SDK
-(function() {
-  var s = document.createElement('script');
-  s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
-  s.onload = function() {
-    // 加载 Chart.js
-    var c = document.createElement('script');
-    c.src = 'https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js';
-    c.onload = initApp;
-    document.head.appendChild(c);
-  };
-  document.head.appendChild(s);
-})();
 
 var supabase = null;
 var currentUser = null;
@@ -458,17 +446,25 @@ function initApp() {
     return;
   }
 
+  // 正常模式：检查登录状态
   supabase.auth.getSession().then(function(res) {
     var session = res.data.session;
     if (session) {
       loadUserAndShowApp(session.user);
+    } else {
+      // 未登录：显示登录页面
+      document.getElementById('app').style.display = 'none';
+      document.getElementById('loginPage').style.display = 'flex';
     }
   });
+
   supabase.auth.onAuthStateChange(function(_event, session) {
     if (!session) {
       document.getElementById('app').style.display = 'none';
       document.getElementById('loginPage').style.display = 'flex';
       currentUser = null;
+    } else {
+      loadUserAndShowApp(session.user);
     }
   });
 }
@@ -625,7 +621,7 @@ function fmtDate(s) {
 }
 
 function fmtMoney(n) {
-  return '¥' + Number(n || 0).toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return '￥' + Number(n || 0).toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function avatarColor(str) {
@@ -694,7 +690,7 @@ function renderNotifList() {
   var html = '';
   notifications.forEach(function(n, i) {
     html += '<div class="notif-item' + (n.read ? '' : ' unread') + '" onclick="markNotifRead(' + i + ')">' +
-      '<div class="notif-text">' + (n.read ? '' : '🔵 ') + n.text + '</div>' +
+      '<div class="notif-text">' + (n.read ? '' : '?? ') + n.text + '</div>' +
       '<div class="notif-time">' + fmtTimeAgo(n.time) + '</div></div>';
   });
   list.innerHTML = html;
@@ -878,9 +874,9 @@ function renderDashboardCharts(orders, payments) {
       type: 'line',
       data: {
         labels: months,
-        datasets: [{ label: '营收 (¥)', data: revData, borderColor: '#3B6DE8', backgroundColor: 'rgba(59,109,232,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#3B6DE8' }]
+        datasets: [{ label: '营收 (￥)', data: revData, borderColor: '#3B6DE8', backgroundColor: 'rgba(59,109,232,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#3B6DE8' }]
       },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: function(v) { return '¥' + v.toLocaleString(); } } } } }
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: function(v) { return '￥' + v.toLocaleString(); } } } } }
     });
   }
 
@@ -916,7 +912,7 @@ function renderProgressBar(order) {
     var cls = '';
     if (curIdx === i) cls = 'active';
     else if (i < curIdx) cls = 'done';
-    html += '<div class="progress-step ' + cls + '"><div class="step-dot">' + (i < curIdx ? '✓' : (i + 1)) + '</div><div class="step-label">' + s.label + '</div></div>';
+    html += '<div class="progress-step ' + cls + '"><div class="step-dot">' + (i < curIdx ? '?' : (i + 1)) + '</div><div class="step-label">' + s.label + '</div></div>';
   });
   html += '</div>';
   return html;
@@ -973,9 +969,9 @@ function renderCustomers() {
           '<option value="普通"' + (customerFilter==='普通'?' selected':'') + '>普通</option>' +
         '</select>' +
         '<button class="btn btn-primary" onclick="openCustomerModal()">+ 新增客户</button>' +
-        '<button class="btn btn-outline btn-sm" onclick="importCustomers()" title="批量导入CSV">📥 批量导入</button>' +
-        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">🖨️</button>' +
-        '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'客户列表\')" title="导出CSV">📤 导出</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="importCustomers()" title="批量导入CSV">?? 批量导入</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">???</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'客户列表\')" title="导出CSV">?? 导出</button>' +
         '<span style="color:var(--gray-500);font-size:13px">共 ' + filtered.length + ' 位客户</span>' +
       '</div>' +
       '<div class="table-wrap">' +
@@ -1094,7 +1090,7 @@ function contactRowHtml(ct, idx) {
     '<div class="form-field"><label style="font-size:10px">姓名</label><input type="text" class="ct-name" value="' + (ct.name||'') + '" placeholder="联系人姓名"></div>' +
     '<div class="form-field"><label style="font-size:10px">电话</label><input type="text" class="ct-phone" value="' + (ct.phone||'') + '" placeholder="手机/固话"></div>' +
     '<div class="form-field"><label style="font-size:10px">职务</label><input type="text" class="ct-title" value="' + (ct.title||'') + '" placeholder="职务"></div>' +
-    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">✕</button>' +
+    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">?</button>' +
   '</div>';
 }
 
@@ -1110,7 +1106,7 @@ function addContactRow() {
   div.innerHTML = '<div class="form-field"><label style="font-size:10px">姓名</label><input type="text" class="ct-name" placeholder="联系人姓名"></div>' +
     '<div class="form-field"><label style="font-size:10px">电话</label><input type="text" class="ct-phone" placeholder="手机/固话"></div>' +
     '<div class="form-field"><label style="font-size:10px">职务</label><input type="text" class="ct-title" placeholder="职务"></div>' +
-    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">✕</button>';
+    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">?</button>';
   container.appendChild(div);
 }
 
@@ -1329,11 +1325,11 @@ function renderOrders() {
           '<option value="delivered">已送货</option>' +
           '<option value="cancelled">已取消</option>' +
         '</select>' +
-        '<button class="btn btn-outline btn-sm" onclick="openAdvSearchModal()" title="高级搜索">🔍 高级搜索</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="openAdvSearchModal()" title="高级搜索">?? 高级搜索</button>' +
         '<button class="btn btn-primary" onclick="openOrderModal()">+ 新建订单</button>' +
-        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchPrint()">🖨️ 批量打印</button>' : '') +
-        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchExport()">📥 批量导出</button>' : '') +
-        (orderSelected.length && isAdmin() ? '<button class="btn btn-primary btn-sm" onclick="batchSettle()">💰 批量结算</button>' : '') +
+        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchPrint()">??? 批量打印</button>' : '') +
+        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchExport()">?? 批量导出</button>' : '') +
+        (orderSelected.length && isAdmin() ? '<button class="btn btn-primary btn-sm" onclick="batchSettle()">?? 批量结算</button>' : '') +
         '<span style="color:var(--gray-500);font-size:13px">共 ' + filtered.length + ' 个订单</span>' +
       '</div>' +
       '<div class="table-wrap">' +
@@ -1362,7 +1358,7 @@ function renderOrders() {
               '<button class="btn btn-ghost btn-sm" onclick="openOrderModal(\'' + o.id + '\')">编辑</button>' +
               (isAdmin() ? '<button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="deleteOrder(\'' + o.id + '\')">删除</button>' : '')) +
               (o.signature ? '<button class="btn btn-ghost btn-sm" style="color:var(--primary)" onclick="viewSignature(\'' + o.id + '\')">查看签字</button>' : '') +
-              (!isSettled && !o.signature ? '<button class="btn btn-outline btn-sm" onclick="sendSignLink(\'' + o.id + '\')">🖊 签字</button>' : '') +
+              (!isSettled && !o.signature ? '<button class="btn btn-outline btn-sm" onclick="sendSignLink(\'' + o.id + '\')">?? 签字</button>' : '') +
           '</div></td>' +
         '</tr>';
       });
@@ -1429,11 +1425,11 @@ function refreshOrderToolbar() {
       btn.style.display = orderSelected.length ? '' : 'none';
       seenPrint = true;
     }
-    if (txt.indexOf('批量导出') >= 0 || txt.indexOf('📥') >= 0) {
+    if (txt.indexOf('批量导出') >= 0 || txt.indexOf('??') >= 0) {
       btn.style.display = orderSelected.length ? '' : 'none';
       seenExport = true;
     }
-    if (txt.indexOf('批量结算') >= 0 || txt.indexOf('💰') >= 0) {
+    if (txt.indexOf('批量结算') >= 0 || txt.indexOf('??') >= 0) {
       btn.style.display = (orderSelected.length && typeof isAdmin === 'function' && isAdmin()) ? '' : 'none';
       seenSettle = true;
     }
@@ -1654,12 +1650,12 @@ function openOrderModalInner(o, isEdit, newOrderId) {
               '</table>' +
             '</div>' +
             '<datalist id="svcDatalist"></datalist>' +
-            '<div id="orderTotal" style="text-align:right;margin-top:16px;font-size:16px;font-weight:700;color:var(--gray-800)">合计：¥0.00</div>' +
+            '<div id="orderTotal" style="text-align:right;margin-top:16px;font-size:16px;font-weight:700;color:var(--gray-800)">合计：￥0.00</div>' +
           '</div>' +
           '<div class="modal-footer" style="justify-content:space-between">' +
             '<div>' +
-              (isEdit ? '<button class="btn btn-outline btn-sm" onclick="printOrderModal()">🖨️ 打印订单</button> ' : '') +
-              (isEdit && Number(o.balance||0) > 0 ? '<button class="btn btn-primary btn-sm" onclick="settleFromModal(\'' + (o?o.id:'') + '\')">💰 结算</button>' : '') +
+              (isEdit ? '<button class="btn btn-outline btn-sm" onclick="printOrderModal()">??? 打印订单</button> ' : '') +
+              (isEdit && Number(o.balance||0) > 0 ? '<button class="btn btn-primary btn-sm" onclick="settleFromModal(\'' + (o?o.id:'') + '\')">?? 结算</button>' : '') +
             '</div>' +
             '<div>' +
               '<button class="btn btn-outline" onclick="closeModal(\'' + modalId + '\')">取消</button>' +
@@ -1759,9 +1755,9 @@ function orderItemRow(services, item, idx) {
     '<td><input type="number" class="item-copies" value="' + (item&&item.copies?item.copies:1) + '" min="1" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
     '<td><input type="number" class="item-price" value="' + (item?item.price:'') + '" step="0.01" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
     '<td><input type="number" class="item-discount" value="' + (item&&item.discount?item.discount:'100') + '" min="0" max="100" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
-    '<td style="font-weight:500;color:var(--primary);white-space:nowrap" class="item-subtotal">' + (item?fmtMoney(item.subtotal):'¥0.00') + '</td>' +
+    '<td style="font-weight:500;color:var(--primary);white-space:nowrap" class="item-subtotal">' + (item?fmtMoney(item.subtotal):'￥0.00') + '</td>' +
     '<td><input type="text" class="item-remarks" value="' + (item&&item.remarks?item.remarks:'') + '" placeholder="备注" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
-    '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">✕</button></td>' +
+    '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">?</button></td>' +
   '</tr>';
 }
 
@@ -1790,9 +1786,9 @@ function addOrderItemRow() {
       '<td><input type="number" class="item-copies" value="1" min="1" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
       '<td><input type="number" class="item-price" value="0" step="0.01" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
       '<td><input type="number" class="item-discount" value="100" min="0" max="100" onchange="recalcOrderTotal()" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
-      '<td style="font-weight:500;color:var(--primary);white-space:nowrap" class="item-subtotal">¥0.00</td>' +
+      '<td style="font-weight:500;color:var(--primary);white-space:nowrap" class="item-subtotal">￥0.00</td>' +
       '<td><input type="text" class="item-remarks" placeholder="备注" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
-      '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">✕</button></td>';
+      '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">?</button></td>';
     container.appendChild(row);
     renumberOrderItems();
   });
@@ -1990,10 +1986,10 @@ function renderServices() {
       '<div class="toolbar">' +
         '<span style="color:var(--gray-500);font-size:13px">共 ' + list.length + ' 个服务项目</span>' +
         (isAdmin() ? '<button class="btn btn-primary" onclick="openServiceModal()">+ 新增项目</button>' : '') +
-        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="importServices()">📥 导入</button>' : '') +
-        '<button class="btn btn-outline btn-sm" onclick="exportCSV(\'servicesTable\',\'服务项目\')">📤 导出</button>' +
-        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">🖨️</button>' +
-        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="manageCategories()">📂 管理分类</button>' : '') +
+        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="importServices()">?? 导入</button>' : '') +
+        '<button class="btn btn-outline btn-sm" onclick="exportCSV(\'servicesTable\',\'服务项目\')">?? 导出</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">???</button>' +
+        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="manageCategories()">?? 管理分类</button>' : '') +
       '</div>' +
       '<div class="table-wrap">' +
         '<table id="servicesTable"><thead><tr><th>服务项类型</th><th>服务项目名称</th><th>规格</th><th>单位</th><th>单价</th><th>操作</th></tr></thead><tbody>';
@@ -2250,8 +2246,8 @@ function renderFinance() {
       statCard('累计收款', fmtMoney(totalReceived), '#3B6DE8', 'money') +
     '</div>' +
     '<div style="display:flex;gap:8px;margin-bottom:16px">' +
-      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">🖨️ 打印</button>' +
-      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'财务报表\')">📥 导出CSV</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">??? 打印</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'财务报表\')">?? 导出CSV</button>' +
     '</div>' +
 
     '<div class="card">' +
@@ -2406,8 +2402,8 @@ function renderEmployeesTable(users) {
     '<div class="toolbar">' +
       '<span style="color:var(--gray-500);font-size:13px">共 ' + users.length + ' 名员工</span>' +
       '<button class="btn btn-primary" onclick="openEmployeeModal()">+ 添加员工</button>' +
-      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">🖨️ 打印</button>' +
-      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'员工列表\')">📥 导出</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">??? 打印</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'员工列表\')">?? 导出</button>' +
     '</div>' +
     '<div class="table-wrap">' +
       '<table><thead><tr><th>姓名</th><th>账号名</th><th>角色</th><th>创建时间</th><th>操作</th></tr></thead><tbody>';
@@ -2459,7 +2455,7 @@ function openEmployeeModal(id, username, name, role) {
         '<option value="finance"' + (role==='finance'?' selected':'') + '>财务</option>' +
         '<option value="operator"' + (role==='operator'?' selected':'') + '>操作员</option>' +
       '</select></div>' +
-    '<div style="margin-top:8px;color:var(--gray-500);font-size:12px">⚠ 修改角色将影响该员工的系统访问权限</div>';
+    '<div style="margin-top:8px;color:var(--gray-500);font-size:12px">? 修改角色将影响该员工的系统访问权限</div>';
   } else {
     html += '<div class="form-field"><label>账号名 <span class="required">*</span></label><input type="text" id="emp_username" placeholder="仅限字母、数字、下划线"></div>' +
     '<div class="form-field"><label>姓名 <span class="required">*</span></label><input type="text" id="emp_name" placeholder="显示用姓名"></div>' +
@@ -2575,7 +2571,7 @@ function viewSignature(orderId) {
     var html = '<div class="modal-overlay open" id="' + modalId + '" onclick="if(event.target===this)closeModal(\'' + modalId + '\')">' +
       '<div class="modal" style="max-width:600px">' +
         '<div class="modal-header"><span class="modal-title">客户签字 - ' + (o.customer_name||'') + '</span>' +
-          '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')">✕</button>' +
+          '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')">?</button>' +
         '</div>' +
         '<div class="modal-body" style="text-align:center;padding:24px">' +
           '<img src="' + o.signature + '" style="max-width:100%;border:1px solid var(--gray-200);border-radius:8px">' +
@@ -2625,14 +2621,14 @@ function initSignPage(token) {
 
 function showSignError(msg) {
   document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
-    '<div><div style="font-size:64px;margin-bottom:16px">😟</div>' +
+    '<div><div style="font-size:64px;margin-bottom:16px">??</div>' +
     '<h2 style="color:#333">无法加载签名页</h2>' +
     '<p style="color:#666;margin-top:8px">' + msg + '</p></div></div>';
 }
 
 function showSignSuccess(o) {
   document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
-    '<div><div style="font-size:64px;margin-bottom:16px">✅</div>' +
+    '<div><div style="font-size:64px;margin-bottom:16px">?</div>' +
     '<h2 style="color:#333">已签字</h2>' +
     '<p style="color:#666;margin-top:8px">订单 ' + o.id + ' 的签字已提交，感谢您的确认。</p>' +
     '<div style="margin-top:24px"><img src="' + o.signature + '" style="max-width:300px;border:1px solid #ddd;border-radius:8px"></div></div></div>';
@@ -2642,7 +2638,7 @@ function renderSignPage(o, token) {
   document.body.innerHTML = '<div id="signPage" style="font-family:sans-serif;max-width:800px;margin:0 auto;padding:24px">' +
     '<div style="text-align:center;margin-bottom:24px">' +
       '<h2 style="color:#333">客户签字确认</h2>' +
-      '<p style="color:#666;font-size:14px">订单号：' + o.id + ' | 客户：' + (o.customer_name||'') + ' | 金额：¥' + Number(o.total||0).toFixed(2) + '</p>' +
+      '<p style="color:#666;font-size:14px">订单号：' + o.id + ' | 客户：' + (o.customer_name||'') + ' | 金额：￥' + Number(o.total||0).toFixed(2) + '</p>' +
     '</div>' +
     '<div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.08);padding:16px">' +
       '<p style="font-size:13px;color:#666;margin-bottom:8px">请在下方区域手写签名（支持触屏/鼠标）：</p>' +
@@ -2726,29 +2722,30 @@ function initSignCanvas(token) {
     var dataURL = canvas.toDataURL('image/png');
     this.textContent = '提交中...';
     this.disabled = true;
-    supabase.from('orders').update, {
-      p_token: token,
-      p_signature: dataURL
-    }).then(function(res) {
+    
+    // 直接更新 orders 表（使用 sign_token 作为更新条件）
+    var that = this;
+    supabase.from('orders').update({
+      signature: dataURL,
+      sign_token: null,
+      sign_token_expire: null
+    }).eq('sign_token', token).then(function(res) {
       if (res.error) {
         alert('提交失败：' + res.error.message);
-        this.textContent = '确认提交签字';
-        this.disabled = false;
-        return;
-      }
-
-
-        this.textContent = '确认提交签字';
-        this.disabled = false;
+        that.textContent = '确认提交签字';
+        that.disabled = false;
         return;
       }
       document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
-        '<div><div style="font-size:64px;margin-bottom:16px">✅</div>' +
+        '<div><div style="font-size:64px;margin-bottom:16px">?</div>' +
         '<h2 style="color:#333">签字已提交</h2>' +
         '<p style="color:#666;margin-top:8px">感谢您的确认，签字已保存到订单。</p></div></div>';
-    }.bind(this));
+    });
   };
 }
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', initApp);
 </script>
 </body>
 </html>
