@@ -493,6 +493,12 @@ function doLogin() {
     btn.textContent = '登 录';
     if (res.error) { errEl.textContent = '账号或密码错误，请重试'; errEl.style.display = 'block'; return; }
     loadUserAndShowApp(res.data.user);
+  }).catch(function(err) {
+    btn.disabled = false;
+    btn.textContent = '登 录';
+    errEl.textContent = '登录失败：' + (err.message || err);
+    errEl.style.display = 'block';
+    console.error('Login error:', err);
   });
 }
 
