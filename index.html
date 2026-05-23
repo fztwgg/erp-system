@@ -1,74 +1,43 @@
 <!DOCTYPE html>
-
 <html lang="zh-CN">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>图文广告店 ERP 管理系统</title>
-
 <style>
 
   :root {
-
     --primary: #3B6DE8;
-
     --primary-light: #EEF2FF;
-
     --primary-dark: #2952C4;
-
     --success: #2E9E6B;
-
     --success-light: #E8F8F0;
-
     --warning: #D4860B;
-
     --warning-light: #FFF8EA;
-
     --danger: #DC3545;
-
     --danger-light: #FDECEA;
-
     --info: #0A7ABA;
-
     --info-light: #E6F3FA;
-
     --gray-50: #F8F9FC;
-
     --gray-100: #F1F3F8;
-
     --gray-200: #E2E6EF;
-
     --gray-300: #C8CFDF;
-
     --gray-400: #9AA3B5;
-
     --gray-500: #6B7489;
-
     --gray-600: #4A5168;
-
     --gray-700: #333A50;
-
     --gray-800: #1E2335;
-
     --sidebar-w: 220px;
-
     --header-h: 56px;
-
     --radius: 8px;
-
     --radius-lg: 12px;
-
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 14px; color: var(--gray-800); background: var(--gray-50); }
-
   a { text-decoration: none; color: inherit; }
+
 
 
 
@@ -174,6 +143,7 @@
 
 
 
+
   /* Cards & Tables */
 
   .card { background: #fff; border-radius: var(--radius-lg); box-shadow: 0 1px 3px rgba(0,0,0,.06); padding: 20px; margin-bottom: 20px; }
@@ -188,15 +158,11 @@
 
   .search-box input:focus { border-color: var(--primary); }
 
-  .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--gray-400); display: flex; }
-
-  .search-icon svg { width: 16px; height: 16px; fill: currentColor; }
-
   .filter-select { padding: 8px 12px; border: 1.5px solid var(--gray-200); border-radius: var(--radius); font-size: 13px; outline: none; background: #fff; }
 
   .filter-select:focus { border-color: var(--primary); }
 
-  .btn { padding: 8px 16px; border-radius: var(--radius); font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: all .15s; display: inline-flex; align-items: center; gap: 6px; }
+  .btn { padding: 8px; border-radius: var(--radius); font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: all .15s; display: inline-flex; align-items: center; gap: 6px; }
 
   .btn-primary { background: var(--primary); color: #fff; }
 
@@ -273,8 +239,6 @@
   .modal-close { background: none; border: none; cursor: pointer; color: var(--gray-400); display: flex; padding: 4px; border-radius: 4px; }
 
   .modal-close:hover { background: var(--gray-100); }
-
-  .modal-body { padding: 20px; }
 
   .modal-footer { padding: 16px 20px; border-top: 1px solid var(--gray-100); display: flex; justify-content: flex-end; gap: 8px; }
 
@@ -586,6 +550,8 @@
 
 
 
+
+
 <!-- 主应用 -->
 
 <div id="app">
@@ -829,8 +795,11 @@
 </nav>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2.106.1/dist/umd/supabase.js"></script>
+
 <script src="https://unpkg.com/chart.js@4.4.7/dist/chart.umd.js"></script>
+
 <script>
+
 // 调试信息
 console.log('=== ERP System Debug Info ===');
 console.log('Supabase JS loaded:', typeof window.supabase !== 'undefined');
@@ -844,37 +813,25 @@ if (typeof window.supabase === 'undefined') {
 }
 
 // ============================================================
-
 //  Supabase 初始化
-
 // ============================================================
 
 const SUPABASE_URL = 'https://igwwccxziljzwzskwmdw.supabase.co';
-
 const SUPABASE_ANON_KEY = 'sb_publishable_t5AXcqBxnkEBxJx3ORMvWA_0LTJ4VYn';
 
 
-
 var supabase = null;
-
 var currentUser = null;
-
 var currentPage = null;
-
 var ROLES = { admin:'超级管理员', staff:'业务员', finance:'财务', operator:'操作员' };
-
 var STATUS_MAP = { pending:['待确认','badge-yellow'], production:['生产中','badge-blue'], completed:['已完工','badge-green'], delivered:['已送货','badge-cyan'], cancelled:['已取消','badge-gray'] };
-
 var LEVEL_MAP = { '金牌':'badge-yellow', '银牌':'badge-cyan', '普通':'badge-gray' };
-
 var PAY_METHODS = ['现金','微信支付','支付宝','银行转账','对公转账','月结'];
 
 
 
 // ============================================================
-
 //  初始化
-
 // ============================================================
 
 function initApp() {
@@ -886,16 +843,6 @@ function initApp() {
   } catch(e) {
     console.error('❌ Failed to create Supabase client:', e);
     alert('错误：无法连接 Supabase！请检查网络连接。');
-    return;
-  }
-
-  // 检测是否是签名页访问（?sign=token）
-  var params = new URLSearchParams(location.search);
-  var signToken = params.get('sign');
-  if (signToken) {
-    console.log('📝 Sign page mode, token:', signToken.substring(0, 20) + '...');
-    // 签名页模式：不登录，直接加载签名页
-    initSignPage(signToken);
     return;
   }
 
@@ -936,11 +883,8 @@ function initApp() {
 
 
 
-
 // ============================================================
-
 //  认证
-
 // ============================================================
 
 function usernameToEmail(username) {
@@ -1013,42 +957,6 @@ function doLogin() {
   
   console.log('=== doLogin() finished ===');
 }
-  if (!/^[a-zA-Z0-9_\-]{2,30}$/.test(username)) { errEl.textContent = '账号名只能包含字母、数字、下划线，长度2-30位'; errEl.style.display = 'block'; return; }
-
-  btn.disabled = true;
-
-  btn.textContent = '登录中...';
-
-  errEl.style.display = 'none';
-
-  var email = usernameToEmail(username);
-
-  supabase.auth.signInWithPassword({ email: email, password: pass }).then(function(res) {
-
-    btn.disabled = false;
-
-    btn.textContent = '登 录';
-
-    if (res.error) { errEl.textContent = '账号或密码错误，请重试'; errEl.style.display = 'block'; return; }
-
-    loadUserAndShowApp(res.data.user);
-
-  }).catch(function(err) {
-
-    btn.disabled = false;
-
-    btn.textContent = '登 录';
-
-    errEl.textContent = '登录失败：' + (err.message || err);
-
-    errEl.style.display = 'block';
-
-    console.error('Login error:', err);
-
-  });
-
-}
-
 
 
 function showRegister() {
@@ -1060,6 +968,7 @@ function showRegister() {
   document.getElementById('regError').style.display = 'none';
 
 }
+
 
 function hideRegister() {
 
@@ -1196,7 +1105,6 @@ function loadUserAndShowApp(user) {
   applyRoleFilter();
 
 
-
   switchPage('order');
 
   updateNotifBadge();
@@ -1232,19 +1140,16 @@ function applyRoleFilter() {
 
 
 function doLogout() {
-
   if (!confirm('确认退出登录？')) return;
-
   supabase.auth.signOut();
 
 }
 
 
 
+
 // ============================================================
-
 //  工具函数
-
 // ============================================================
 
 function toast(msg, type) {
@@ -1278,6 +1183,7 @@ function closeModal(id) {
   if (el) el.remove();
 
 }
+
 
 
 
@@ -1323,10 +1229,9 @@ function avatarColor(str) {
 
 
 
+
 // ============================================================
-
 //  权限控制
-
 // ============================================================
 
 function isAdmin() { return currentUser && currentUser.role === 'admin'; }
@@ -1345,10 +1250,9 @@ function hasPageAccess(page) {
 
 
 
+
 // ============================================================
-
 //  移动端侧边栏切换
-
 // ============================================================
 
 function toggleSidebar() {
@@ -1359,10 +1263,9 @@ function toggleSidebar() {
 
 
 
+
 // ============================================================
-
 //  通知系统
-
 // ============================================================
 
 var notifications = [];
@@ -1439,7 +1342,7 @@ function renderNotifList() {
 
     html += '<div class="notif-item' + (n.read ? '' : ' unread') + '" onclick="markNotifRead(' + i + ')">' +
 
-      '<div class="notif-text">' + (n.read ? '' : '?? ') + n.text + '</div>' +
+      '<div class="notif-text">' + (n.read ? '' : '🔴 ') + n.text + '</div>' +
 
       '<div class="notif-time">' + fmtTimeAgo(n.time) + '</div></div>';
 
@@ -1525,6 +1428,7 @@ document.addEventListener('click', function(e) {
 
   if (dd && !e.target.closest('.notif-container')) { dd.classList.remove('open'); }
 
+
 });
 
 // 点击空白关闭移动端侧边栏
@@ -1541,10 +1445,9 @@ document.addEventListener('click', function(e) {
 
 
 
+
 // ============================================================
-
 //  打印和Excel导出
-
 // ============================================================
 
 function printCurrentPage() {
@@ -1609,10 +1512,9 @@ function exportCSV(tableId, filename) {
 
 
 
+
 // ============================================================
-
 //  图表渲染
-
 // ============================================================
 
 var chartInstances = {};
@@ -1679,10 +1581,9 @@ function switchPage(page) {
 
 
 
+
 // ============================================================
-
 //  仪表盘
-
 // ============================================================
 
 function renderDashboard() {
@@ -1692,7 +1593,6 @@ function renderDashboard() {
   content.innerHTML = '<div class="loading-mask">加载中...</div>';
 
   destroyCharts();
-
 
 
   Promise.all([
@@ -1712,7 +1612,6 @@ function renderDashboard() {
     var payments = results[2].data || [];
 
 
-
     var totalRevenue = 0;
 
     payments.forEach(function(p) { totalRevenue += Number(p.amount || 0); });
@@ -1722,7 +1621,6 @@ function renderDashboard() {
     var totalReceivable = 0;
 
     orders.forEach(function(o) { totalReceivable += Number(o.balance || 0); });
-
 
 
     var html = '<div class="stats-grid">' +
@@ -1748,7 +1646,6 @@ function renderDashboard() {
     '';
 
     content.innerHTML = html;
-
 
 
     // 渲染图表
@@ -1883,7 +1780,7 @@ function renderProgressBar(order) {
 
     else if (i < curIdx) cls = 'done';
 
-    html += '<div class="progress-step ' + cls + '"><div class="step-dot">' + (i < curIdx ? '?' : (i + 1)) + '</div><div class="step-label">' + s.label + '</div></div>';
+    html += '<div class="progress-step ' + cls + '"><div class="step-dot">' + (i < curIdx ? '✓' : (i + 1)) + '</div><div class="step-label">' + s.label + '</div></div>';
 
   });
 
@@ -1927,14 +1824,12 @@ function statCard(label, value, color, iconName) {
 
 
 
+
 // ============================================================
-
 //  客户管理
-
 // ============================================================
 
 var customerSearch = '';
-
 var customerFilter = 'all';
 
 
@@ -1944,7 +1839,6 @@ function renderCustomers() {
   var content = document.getElementById('pageContent');
 
   content.innerHTML = '<div class="loading-mask">加载中...</div>';
-
 
 
   supabase.from('customers').select('*').order('created_at', { ascending: false }).then(function(res) {
@@ -1968,7 +1862,6 @@ function renderCustomers() {
       return matchSearch && matchFilter;
 
     });
-
 
 
     var html = '<div class="card">' +
@@ -1997,11 +1890,11 @@ function renderCustomers() {
 
         '<button class="btn btn-primary" onclick="openCustomerModal()">+ 新增客户</button>' +
 
-        '<button class="btn btn-outline btn-sm" onclick="importCustomers()" title="批量导入CSV">?? 批量导入</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="importCustomers()" title="批量导入CSV">📥 批量导入</button>' +
 
-        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">???</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">🖨️ 打印</button>' +
 
-        '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'客户列表\')" title="导出CSV">?? 导出</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'客户列表\')" title="导出CSV">📤 导出</button>' +
 
         '<span style="color:var(--gray-500);font-size:13px">共 ' + filtered.length + ' 位客户</span>' +
 
@@ -2092,6 +1985,7 @@ function renderCustomers() {
   });
 
 }
+
 
 
 
@@ -2227,6 +2121,7 @@ function showCustomerModal(c, isEdit) {
 
 
 
+
 function contactRowHtml(ct, idx) {
 
   ct = ct || {};
@@ -2239,11 +2134,12 @@ function contactRowHtml(ct, idx) {
 
     '<div class="form-field"><label style="font-size:10px">职务</label><input type="text" class="ct-title" value="' + (ct.title||'') + '" placeholder="职务"></div>' +
 
-    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">?</button>' +
+    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">✕</button>' +
 
   '</div>';
 
 }
+
 
 
 
@@ -2271,11 +2167,12 @@ function addContactRow() {
 
     '<div class="form-field"><label style="font-size:10px">职务</label><input type="text" class="ct-title" placeholder="职务"></div>' +
 
-    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">?</button>';
+    '<button class="btn btn-ghost btn-sm" style="color:var(--danger);margin-bottom:2px" onclick="this.closest(\'.contact-row\').remove()">✕</button>';
 
   container.appendChild(div);
 
 }
+
 
 
 
@@ -2384,6 +2281,7 @@ function saveCustomer(id) {
   }
 
 }
+
 
 
 
@@ -2511,6 +2409,7 @@ function importCustomers() {
 
 
 
+
 function deleteCustomer(id) {
 
   if (!confirm('确认删除该客户？')) return;
@@ -2529,28 +2428,19 @@ function deleteCustomer(id) {
 
 
 
+
 // ============================================================
-
 //  订单管理（重构版）
-
 // ============================================================
 
 var orderFilter = 'all';
-
 var orderSearch = '';
-
 var orderTab = 'all';
-
 var orderAdvSearch = { dateFrom: '', dateTo: '', customer: '', contact: '', projectName: '', payStatus: '', prodStatus: '' };
-
 var orderSelected = [];
-
 var _composingFlag = false;
-
 var _selectAllBulk = false;
-
 var _visibleOrderIds = [];
-
 var _visibleCustSearchFocused = false;
 
 
@@ -2567,6 +2457,7 @@ function commitCustomerSearch(el) {
 
 }
 
+
 function commitOrderSearch(el) {
 
   if (el.dataset.composing === '1') return;
@@ -2579,12 +2470,12 @@ function commitOrderSearch(el) {
 
 
 
+
 function renderOrders() {
 
   var content = document.getElementById('pageContent');
 
   content.innerHTML = '<div class="loading-mask">加载中...</div>';
-
 
 
   supabase.from('orders').select('*').order('created_at', { ascending: false }).then(function(res) {
@@ -2604,7 +2495,6 @@ function renderOrders() {
     var sevenDaysAgo = new Date(now); sevenDaysAgo.setDate(now.getDate() - 7);
 
     var sevenStr = fmtDate(sevenDaysAgo);
-
 
 
     var filtered = list.filter(function(o) {
@@ -2654,7 +2544,6 @@ function renderOrders() {
       return true;
 
     });
-
 
 
     var tabs = [
@@ -2709,15 +2598,15 @@ function renderOrders() {
 
         '</select>' +
 
-        '<button class="btn btn-outline btn-sm" onclick="openAdvSearchModal()" title="高级搜索">?? 高级搜索</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="openAdvSearchModal()" title="高级搜索">🔍 高级搜索</button>' +
 
         '<button class="btn btn-primary" onclick="openOrderModal()">+ 新建订单</button>' +
 
-        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchPrint()">??? 批量打印</button>' : '') +
+        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchPrint()">🖨️ 批量打印</button>' : '') +
 
-        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchExport()">?? 批量导出</button>' : '') +
+        (orderSelected.length ? '<button class="btn btn-outline btn-sm" onclick="batchExport()">📤 批量导出</button>' : '') +
 
-        (orderSelected.length && isAdmin() ? '<button class="btn btn-primary btn-sm" onclick="batchSettle()">?? 批量结算</button>' : '') +
+        (orderSelected.length && isAdmin() ? '<button class="btn btn-primary btn-sm" onclick="batchSettle()">💰 批量结算</button>' : '') +
 
         '<span style="color:var(--gray-500);font-size:13px">共 ' + filtered.length + ' 个订单</span>' +
 
@@ -2773,10 +2662,6 @@ function renderOrders() {
 
               (isAdmin() ? '<button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="deleteOrder(\'' + o.id + '\')">删除</button>' : '')) +
 
-              (o.signature ? '<button class="btn btn-ghost btn-sm" style="color:var(--primary)" onclick="viewSignature(\'' + o.id + '\')">查看签字</button>' : '') +
-
-              (!isSettled && !o.signature ? '<button class="btn btn-outline btn-sm" onclick="sendSignLink(\'' + o.id + '\')">?? 签字</button>' : '') +
-
           '</div></td>' +
 
         '</tr>';
@@ -2811,6 +2696,7 @@ function renderOrders() {
 
 
 
+
 function toggleSelectAll(cb) {
 
   var checked = cb.checked;
@@ -2841,6 +2727,7 @@ function toggleSelectAll(cb) {
 
 
 
+
 function toggleSelectOrder(id) {
 
   var idx = orderSelected.indexOf(id);
@@ -2852,6 +2739,7 @@ function toggleSelectOrder(id) {
   refreshOrderToolbar();
 
 }
+
 
 
 
@@ -2872,6 +2760,7 @@ function updateSelectAllCheckbox() {
   else { allCb.indeterminate = true; allCb.checked = false; }
 
 }
+
 
 
 
@@ -2909,7 +2798,7 @@ function refreshOrderToolbar() {
 
     }
 
-    if (txt.indexOf('批量导出') >= 0 || txt.indexOf('??') >= 0) {
+    if (txt.indexOf('批量导出') >= 0 || txt.indexOf('📤') >= 0) {
 
       btn.style.display = orderSelected.length ? '' : 'none';
 
@@ -2917,7 +2806,7 @@ function refreshOrderToolbar() {
 
     }
 
-    if (txt.indexOf('批量结算') >= 0 || txt.indexOf('??') >= 0) {
+    if (txt.indexOf('批量结算') >= 0 || txt.indexOf('💰') >= 0) {
 
       btn.style.display = (orderSelected.length && typeof isAdmin === 'function' && isAdmin()) ? '' : 'none';
 
@@ -2928,6 +2817,7 @@ function refreshOrderToolbar() {
   });
 
 }
+
 
 
 
@@ -2947,6 +2837,7 @@ function batchPrint() {
 
 
 
+
 function batchExport() {
 
   if (!orderSelected.length) { toast('请先选择订单', 'error'); return; }
@@ -2957,7 +2848,7 @@ function batchExport() {
 
   var rows = table.querySelectorAll('tbody tr');
 
-  var csv = [['订单号','客户','联系人','项目名称','开单日期','状态','总金额','已付','未结'].join(',')];
+  var csv = [['订单号','客户','联系人','项目名称','开单日期','状态','总金额','已付','未结']].join(',');
 
   rows.forEach(function(row) {
 
@@ -2996,6 +2887,7 @@ function batchExport() {
   toast('导出成功！');
 
 }
+
 
 
 
@@ -3052,6 +2944,7 @@ function batchSettle() {
   });
 
 }
+
 
 
 
@@ -3121,6 +3014,7 @@ function openAdvSearchModal() {
 
 
 
+
 function applyAdvSearch(modalId) {
 
   orderAdvSearch = {
@@ -3146,6 +3040,7 @@ function applyAdvSearch(modalId) {
   renderOrders();
 
 }
+
 
 
 
@@ -3214,6 +3109,7 @@ function openOrderModal(id) {
   }
 
 }
+
 
 
 
@@ -3367,9 +3263,9 @@ function openOrderModalInner(o, isEdit, newOrderId) {
 
             '<div>' +
 
-              (isEdit ? '<button class="btn btn-outline btn-sm" onclick="printOrderModal()">??? 打印订单</button> ' : '') +
+              (isEdit ? '<button class="btn btn-outline btn-sm" onclick="printOrderModal()">🖨️ 打印订单</button> ' : '') +
 
-              (isEdit && Number(o.balance||0) > 0 ? '<button class="btn btn-primary btn-sm" onclick="settleFromModal(\'' + (o?o.id:'') + '\')">?? 结算</button>' : '') +
+              (isEdit && Number(o.balance||0) > 0 ? '<button class="btn btn-primary btn-sm" onclick="settleFromModal(\'' + (o?o.id:'') + '\')">💰 结算</button>' : '') +
 
             '</div>' +
 
@@ -3419,6 +3315,7 @@ function openOrderModalInner(o, isEdit, newOrderId) {
 
 
 
+
 function filterCustomerDropdown() {
 
   var input = document.getElementById('o_customer_search');
@@ -3445,6 +3342,7 @@ function filterCustomerDropdown() {
 
 
 
+
 function showCustomerDropdown() {
 
   var dropdown = document.getElementById('customerDropdown');
@@ -3454,6 +3352,7 @@ function showCustomerDropdown() {
   dropdown.style.display = 'block';
 
 }
+
 
 
 
@@ -3511,6 +3410,7 @@ function selectCustomer(id, name) {
 
 
 
+
 function printOrderModal() {
 
   var modal = document.querySelector('#orderModal .modal');
@@ -3529,6 +3429,7 @@ function printOrderModal() {
 
 
 
+
 function settleFromModal(orderId) {
 
   closeModal('orderModal');
@@ -3536,6 +3437,7 @@ function settleFromModal(orderId) {
   openPaymentModal(orderId);
 
 }
+
 
 
 
@@ -3573,11 +3475,12 @@ function orderItemRow(services, item, idx) {
 
     '<td><input type="text" class="item-remarks" value="' + (item&&item.remarks?item.remarks:'') + '" placeholder="备注" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
 
-    '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">?</button></td>' +
+    '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">✕</button></td>' +
 
   '</tr>';
 
 }
+
 
 
 
@@ -3635,7 +3538,7 @@ function addOrderItemRow() {
 
       '<td><input type="text" class="item-remarks" placeholder="备注" style="width:100%;padding:5px 4px;font-size:12px;border:1px solid var(--gray-200);border-radius:4px"></td>' +
 
-      '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">?</button></td>';
+      '<td style="text-align:center"><button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px" onclick="this.closest(\'tr\').remove();renumberOrderItems();recalcOrderTotal()" title="删除">✕</button></td>';
 
     container.appendChild(row);
 
@@ -3644,6 +3547,7 @@ function addOrderItemRow() {
   });
 
 }
+
 
 
 
@@ -3699,6 +3603,7 @@ function onServiceNameChange(idx) {
 
 
 
+
 function renumberOrderItems() {
 
   var rows = document.querySelectorAll('.order-item');
@@ -3720,6 +3625,7 @@ function renumberOrderItems() {
   });
 
 }
+
 
 
 
@@ -3758,6 +3664,7 @@ function recalcOrderTotal() {
   if (totalEl) totalEl.textContent = '本单合计：' + fmtMoney(total);
 
 }
+
 
 
 
@@ -3828,7 +3735,6 @@ function saveOrder(id, newOrderId) {
   items.forEach(function(i) { subtotal += i.subtotal; });
 
 
-
   // 检查是否已结算 - 已结算的不允许更新
 
   if (id) {
@@ -3852,7 +3758,6 @@ function saveOrder(id, newOrderId) {
     doSaveOrder();
 
   }
-
 
 
   function doSaveOrder() {
@@ -3957,6 +3862,7 @@ function saveOrder(id, newOrderId) {
 
 
 
+
 function deleteOrder(id) {
 
   supabase.from('orders').select('balance,status').eq('id', id).single().then(function(res) {
@@ -3987,10 +3893,9 @@ function deleteOrder(id) {
 
 
 
+
 // ============================================================
-
 //  服务项目（优化版）
-
 // ============================================================
 
 function getServiceCategories() {
@@ -4009,12 +3914,12 @@ function saveServiceCategories(cats) {
 
 
 
+
 function renderServices() {
 
   var content = document.getElementById('pageContent');
 
   content.innerHTML = '<div class="loading-mask">加载中...</div>';
-
 
 
   supabase.from('services').select('*').order('category,name').then(function(res) {
@@ -4031,20 +3936,19 @@ function renderServices() {
 
         (isAdmin() ? '<button class="btn btn-primary" onclick="openServiceModal()">+ 新增项目</button>' : '') +
 
-        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="importServices()">?? 导入</button>' : '') +
+        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="importServices()">📥 导入</button>' : '') +
 
-        '<button class="btn btn-outline btn-sm" onclick="exportCSV(\'servicesTable\',\'服务项目\')">?? 导出</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="exportCSV(\'servicesTable\',\'服务项目\')">📤 导出</button>' +
 
-        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">???</button>' +
+        '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()" title="打印">🖨️ 打印</button>' +
 
-        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="manageCategories()">?? 管理分类</button>' : '') +
+        (isAdmin() ? '<button class="btn btn-outline btn-sm" onclick="manageCategories()">📂 管理分类</button>' : '') +
 
       '</div>' +
 
       '<div class="table-wrap">' +
 
         '<table id="servicesTable"><thead><tr><th>服务项类型</th><th>服务项目名称</th><th>规格</th><th>单位</th><th>单价</th><th>操作</th></tr></thead><tbody>';
-
 
 
     if (list.length) {
@@ -4082,7 +3986,6 @@ function renderServices() {
     }
 
 
-
     html += '</tbody></table></div></div>';
 
     content.innerHTML = html;
@@ -4090,6 +3993,7 @@ function renderServices() {
   });
 
 }
+
 
 
 
@@ -4153,6 +4057,7 @@ function manageCategories() {
 
 
 
+
 function addNewCategory() {
 
   var input = document.getElementById('newCategoryName');
@@ -4179,6 +4084,7 @@ function addNewCategory() {
 
 
 
+
 function removeCategory(idx) {
 
   var cats = getServiceCategories();
@@ -4194,6 +4100,7 @@ function removeCategory(idx) {
   toast('分类已删除');
 
 }
+
 
 
 
@@ -4219,11 +4126,10 @@ function openServiceModal(id) {
 
 
 
+
 function showServiceModal(s, isEdit) {
 
   var cats = getServiceCategories();
-
-  var modalId = 'serviceModal';
 
   var catOptions = cats.map(function(c) {
 
@@ -4231,7 +4137,7 @@ function showServiceModal(s, isEdit) {
 
   }).join('');
 
-  var html = '<div class="modal-overlay open" id="' + modalId + '">' +
+  var html = '<div class="modal-overlay open" id="serviceModal">' +
 
     '<div class="modal">' +
 
@@ -4239,7 +4145,7 @@ function showServiceModal(s, isEdit) {
 
         '<span class="modal-title">' + (isEdit ? '编辑项目' : '新增项目') + '</span>' +
 
-        '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>' +
+        '<button class="modal-close" onclick="closeModal(\'serviceModal\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>' +
 
       '</div>' +
 
@@ -4275,7 +4181,7 @@ function showServiceModal(s, isEdit) {
 
       '<div class="modal-footer">' +
 
-        '<button class="btn btn-outline" onclick="closeModal(\'' + modalId + '\')">取消</button>' +
+        '<button class="btn btn-outline" onclick="closeModal(\'serviceModal\')">取消</button>' +
 
         '<button class="btn btn-primary" onclick="saveService(\'' + (s&&s.id||'') + '\')">保存</button>' +
 
@@ -4288,6 +4194,7 @@ function showServiceModal(s, isEdit) {
   document.getElementById('modals').innerHTML = html;
 
 }
+
 
 
 
@@ -4322,6 +4229,7 @@ function importServices() {
   input.click();
 
 }
+
 
 
 
@@ -4409,6 +4317,7 @@ function processServicesImport(text) {
 
 
 
+
 function saveService(id) {
 
   var name = document.getElementById('s_name').value.trim();
@@ -4481,6 +4390,7 @@ function saveService(id) {
 
 
 
+
 function deleteService(id) {
 
   if (!confirm('确认删除该项目？')) return;
@@ -4499,10 +4409,9 @@ function deleteService(id) {
 
 
 
+
 // ============================================================
-
 //  财务结算
-
 // ============================================================
 
 function renderFinance() {
@@ -4510,7 +4419,6 @@ function renderFinance() {
   var content = document.getElementById('pageContent');
 
   content.innerHTML = '<div class="loading-mask">加载中...</div>';
-
 
 
   Promise.all([
@@ -4526,7 +4434,6 @@ function renderFinance() {
     var payments = results[1].data || [];
 
 
-
     var totalReceivable = 0;
 
     orders.forEach(function(o) { totalReceivable += o.balance; });
@@ -4534,7 +4441,6 @@ function renderFinance() {
     var totalReceived = 0;
 
     payments.forEach(function(p) { totalReceived += Number(p.amount || 0); });
-
 
 
     var html = '<div class="stats-grid">' +
@@ -4551,12 +4457,11 @@ function renderFinance() {
 
     '<div style="display:flex;gap:8px;margin-bottom:16px">' +
 
-      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">??? 打印</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">🖨️ 打印</button>' +
 
-      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'财务报表\')">?? 导出CSV</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'财务报表\')">📤 导出CSV</button>' +
 
     '</div>' +
-
 
 
     '<div class="card">' +
@@ -4598,7 +4503,6 @@ function renderFinance() {
     html += '</tbody></table></div></div>';
 
 
-
     html += '<div class="card">' +
 
       '<div class="card-title">收款记录</div>' +
@@ -4624,12 +4528,12 @@ function renderFinance() {
     html += '</tbody></table></div></div>';
 
 
-
     content.innerHTML = html;
 
   });
 
 }
+
 
 
 
@@ -4681,15 +4585,14 @@ function openPaymentModal(orderId) {
 
         '</div>' +
 
-      '</div>' +
-
-    '</div>';
+      '</div></div>';
 
     document.getElementById('modals').innerHTML = html;
 
   });
 
 }
+
 
 
 
@@ -4706,7 +4609,6 @@ function savePayment(orderId) {
     if (!order) return;
 
     if (amount > order.balance) { alert('收款金额不能大于未结余额'); return; }
-
 
 
     supabase.from('payments').select('id').order('id', { ascending: false }).limit(1).then(function(r2) {
@@ -4737,7 +4639,7 @@ function savePayment(orderId) {
 
         created_at: new Date().toISOString(),
 
-        created_by: currentUser.email, // RLS：记录创建者
+        created_by: currentUser.email // RLS：记录创建者
 
       };
 
@@ -4746,7 +4648,6 @@ function savePayment(orderId) {
       var newBalance = Number(order.total || 0) - newPaid;
 
       // 付款不影响生产状态，状态由人工更新
-
 
 
       supabase.from('payments').insert([payment]).then(function(r3) {
@@ -4785,10 +4686,9 @@ function savePayment(orderId) {
 
 
 
+
 // ============================================================
-
 //  员工管理（仅管理员可见）
-
 // ============================================================
 
 function renderEmployees() {
@@ -4798,7 +4698,6 @@ function renderEmployees() {
   var content = document.getElementById('pageContent');
 
   content.innerHTML = '<div class="loading-mask">加载中...</div>';
-
 
 
   supabase.rpc('list_users').then(function(res) {
@@ -4851,6 +4750,7 @@ function renderEmployees() {
 
 
 
+
 function renderEmployeesTable(users) {
 
   var content = document.getElementById('pageContent');
@@ -4863,9 +4763,9 @@ function renderEmployeesTable(users) {
 
       '<button class="btn btn-primary" onclick="openEmployeeModal()">+ 添加员工</button>' +
 
-      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">??? 打印</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="printCurrentPage()">🖨️ 打印</button>' +
 
-      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'员工列表\')">?? 导出</button>' +
+      '<button class="btn btn-outline btn-sm" onclick="exportCSV(null,\'员工列表\')">📤 导出</button>' +
 
     '</div>' +
 
@@ -4925,6 +4825,7 @@ function renderEmployeesTable(users) {
 
 
 
+
 function openEmployeeModal(id, username, name, role) {
 
   var isEdit = !!id;
@@ -4969,7 +4870,7 @@ function openEmployeeModal(id, username, name, role) {
 
       '</select></div>' +
 
-    '<div style="margin-top:8px;color:var(--gray-500);font-size:12px">? 修改角色将影响该员工的系统访问权限</div>';
+    '<div style="margin-top:8px;color:var(--gray-500);font-size:12px">⚠️ 修改角色将影响该员工的系统访问权限</div>';
 
   } else {
 
@@ -5008,6 +4909,7 @@ function openEmployeeModal(id, username, name, role) {
   document.getElementById('modals').innerHTML = html;
 
 }
+
 
 
 
@@ -5101,6 +5003,7 @@ function saveEmployee(id, oldRole) {
 
 
 
+
 function deleteEmployee(id) {
 
   if (!confirm('确认删除该员工？此操作不可撤销！')) return;
@@ -5119,447 +5022,13 @@ function deleteEmployee(id) {
 
 }
 
-// ============================================================
 
-//  电子签名功能
+// 启动应用
+initApp();
 
-// ============================================================
-
-
-
-// 生成签名 token 并复制到剪贴板
-
-function sendSignLink(orderId) {
-
-  if (!orderId) return;
-
-  // 生成 32 位随机 token
-
-  var token = '';
-
-  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-  for (var i = 0; i < 32; i++) token += chars.charAt(Math.floor(Math.random() * chars.length));
-
-  // 过期时间：7 天后
-
-  var d = new Date();
-
-  d.setDate(d.getDate() + 7);
-
-  var expire = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-
-  supabase.from('orders').update({ sign_token: token, sign_token_expire: expire }).eq('id', orderId).then(function(res) {
-
-    if (res.error) { toast('生成链接失败：' + res.error.message, 'error'); return; }
-
-    var url = 'https://fztwgg.github.io/erp-system/?sign=' + token;
-
-    // 复制到剪贴板
-
-    if (navigator.clipboard) {
-
-      navigator.clipboard.writeText(url).then(function() {
-
-        toast('签字链接已复制！发给客户即可', 'success');
-
-      }).catch(function() {
-
-        prompt('复制签字链接：', url);
-
-      });
-
-    } else {
-
-      prompt('复制签字链接：', url);
-
-    }
-
-  });
-
-}
-
-
-
-// 查看签字图片
-
-function viewSignature(orderId) {
-
-  supabase.from('orders').select('signature,customer_name,id').eq('id', orderId).single().then(function(res) {
-
-    if (res.error || !res.data) { toast('未找到订单', 'error'); return; }
-
-    var o = res.data;
-
-    if (!o.signature) { toast('该订单暂无签字', 'error'); return; }
-
-    var modalId = 'sigViewModal';
-
-    var html = '<div class="modal-overlay open" id="' + modalId + '" onclick="if(event.target===this)closeModal(\'' + modalId + '\')">' +
-
-      '<div class="modal" style="max-width:600px">' +
-
-        '<div class="modal-header"><span class="modal-title">客户签字 - ' + (o.customer_name||'') + '</span>' +
-
-          '<button class="modal-close" onclick="closeModal(\'' + modalId + '\')">?</button>' +
-
-        '</div>' +
-
-        '<div class="modal-body" style="text-align:center;padding:24px">' +
-
-          '<img src="' + o.signature + '" style="max-width:100%;border:1px solid var(--gray-200);border-radius:8px">' +
-
-          '<p style="margin-top:12px;color:var(--gray-500);font-size:13px">订单号：' + o.id + '</p>' +
-
-        '</div>' +
-
-        '<div class="modal-footer">' +
-
-          '<button class="btn btn-outline" onclick="closeModal(\'' + modalId + '\')">关闭</button>' +
-
-          '<a class="btn btn-primary" href="' + o.signature + '" download="签字_' + o.id + '.png" style="text-decoration:none">下载签字图片</a>' +
-
-        '</div>' +
-
-      '</div>' +
-
-    '</div>';
-
-    document.getElementById('modals').innerHTML = html;
-
-  });
-
-}
-
-
-
-// ============================================================
-
-//  签名页（公共页，无需登录，通过 ?sign=token 访问）
-
-// ============================================================
-
-function initSignPage(token) {
-
-  // 隐藏登录页和主界面
-
-  document.getElementById('loginPage').style.display = 'none';
-
-  var appEl = document.getElementById('app');
-
-  if (appEl) appEl.style.display = 'none';
-
-
-
-  // 查询 token 对应的订单
-
-  supabase.from('orders').select('id,customer_name,total,items,sign_token_expire,signature').eq('sign_token', token).single().then(function(res) {
-
-    if (res.error || !res.data) {
-
-      showSignError('签名链接无效或已使用，请联系商家重新发送。');
-
-      return;
-
-    }
-
-    var o = res.data;
-
-    // 检查是否过期
-
-    var expire = o.sign_token_expire || '';
-
-    var today = new Date().toISOString().slice(0,10);
-
-    if (expire < today) {
-
-      showSignError('签名链接已过期，请联系商家重新发送。');
-
-      return;
-
-    }
-
-    // 检查是否已签字
-
-    if (o.signature) {
-
-      showSignSuccess(o);
-
-      return;
-
-    }
-
-    renderSignPage(o, token);
-
-  });
-
-}
-
-
-
-function showSignError(msg) {
-
-  document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
-
-    '<div><div style="font-size:64px;margin-bottom:16px">??</div>' +
-
-    '<h2 style="color:#333">无法加载签名页</h2>' +
-
-    '<p style="color:#666;margin-top:8px">' + msg + '</p></div></div>';
-
-}
-
-
-
-function showSignSuccess(o) {
-
-  document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
-
-    '<div><div style="font-size:64px;margin-bottom:16px">?</div>' +
-
-    '<h2 style="color:#333">已签字</h2>' +
-
-    '<p style="color:#666;margin-top:8px">订单 ' + o.id + ' 的签字已提交，感谢您的确认。</p>' +
-
-    '<div style="margin-top:24px"><img src="' + o.signature + '" style="max-width:300px;border:1px solid #ddd;border-radius:8px"></div></div></div>';
-
-}
-
-
-
-function renderSignPage(o, token) {
-
-  document.body.innerHTML = '<div id="signPage" style="font-family:sans-serif;max-width:800px;margin:0 auto;padding:24px">' +
-
-    '<div style="text-align:center;margin-bottom:24px">' +
-
-      '<h2 style="color:#333">客户签字确认</h2>' +
-
-      '<p style="color:#666;font-size:14px">订单号：' + o.id + ' | 客户：' + (o.customer_name||'') + ' | 金额：￥' + Number(o.total||0).toFixed(2) + '</p>' +
-
-    '</div>' +
-
-    '<div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.08);padding:16px">' +
-
-      '<p style="font-size:13px;color:#666;margin-bottom:8px">请在下方区域手写签名（支持触屏/鼠标）：</p>' +
-
-      '<div style="position:relative;border:2px dashed var(--gray-300);border-radius:8px;background:#fafafa">' +
-
-        '<canvas id="signCanvas" width="760" height="260" style="width:100%;height:auto;cursor:crosshair;touch-action:none"></canvas>' +
-
-      '</div>' +
-
-      '<div style="display:flex;gap:8px;margin-top:12px;justify-content:center">' +
-
-        '<button id="signClearBtn" style="padding:8px 24px;border:1px solid var(--gray-300);background:#fff;border-radius:6px;cursor:pointer;font-size:14px">清除重签</button>' +
-
-        '<button id="signSubmitBtn" style="padding:8px 32px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:500">确认提交签字</button>' +
-
-      '</div>' +
-
-    '</div>' +
-
-    '<p style="text-align:center;color:var(--gray-400);font-size:12px;margin-top:16px">签字提交后不可修改，请确认无误后再提交</p>' +
-
-  '</div>';
-
-
-
-  // 初始化 Canvas 签名
-
-  initSignCanvas(token);
-
-}
-
-
-
-function initSignCanvas(token) {
-
-  var canvas = document.getElementById('signCanvas');
-
-  if (!canvas) return;
-
-  var ctx = canvas.getContext('2d');
-
-  ctx.strokeStyle = '#222';
-
-  ctx.lineWidth = 2.5;
-
-  ctx.lineCap = 'round';
-
-  ctx.lineJoin = 'round';
-
-
-
-  var drawing = false;
-
-  var lastX = 0, lastY = 0;
-
-
-
-  function getPos(e) {
-
-    var rect = canvas.getBoundingClientRect();
-
-    var touch = e.touches ? e.touches[0] : e;
-
-    var scaleX = canvas.width / rect.width;
-
-    var scaleY = canvas.height / rect.height;
-
-    return {
-
-      x: (touch.clientX - rect.left) * scaleX,
-
-      y: (touch.clientY - rect.top) * scaleY
-
-    };
-
-  }
-
-
-
-  function startDraw(e) {
-
-    e.preventDefault();
-
-    drawing = true;
-
-    var p = getPos(e);
-
-    lastX = p.x; lastY = p.y;
-
-    ctx.beginPath();
-
-    ctx.moveTo(lastX, lastY);
-
-  }
-
-  function draw(e) {
-
-    e.preventDefault();
-
-    if (!drawing) return;
-
-    var p = getPos(e);
-
-    ctx.lineTo(p.x, p.y);
-
-    ctx.stroke();
-
-    lastX = p.x; lastY = p.y;
-
-  }
-
-  function endDraw() { drawing = false; }
-
-
-
-  canvas.addEventListener('mousedown', startDraw);
-
-  canvas.addEventListener('mousemove', draw);
-
-  canvas.addEventListener('mouseup', endDraw);
-
-  canvas.addEventListener('mouseleave', endDraw);
-
-  canvas.addEventListener('touchstart', startDraw, { passive: false });
-
-  canvas.addEventListener('touchmove', draw, { passive: false });
-
-  canvas.addEventListener('touchend', endDraw);
-
-
-
-  // 清除按钮
-
-  document.getElementById('signClearBtn').onclick = function() {
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  };
-
-
-
-  // 提交按钮
-
-  document.getElementById('signSubmitBtn').onclick = function() {
-
-    var blank = document.createElement('canvas');
-
-    blank.width = canvas.width; blank.height = canvas.height;
-
-    if (canvas.toDataURL() === blank.toDataURL()) {
-
-      alert('请先手写签名后再提交！');
-
-      return;
-
-    }
-
-    var dataURL = canvas.toDataURL('image/png');
-
-    this.textContent = '提交中...';
-
-    this.disabled = true;
-
-    
-
-    // 直接更新 orders 表（使用 sign_token 作为更新条件）
-
-    var that = this;
-
-    supabase.from('orders').update({
-
-      signature: dataURL,
-
-      sign_token: null,
-
-      sign_token_expire: null
-
-    }).eq('sign_token', token).then(function(res) {
-
-      if (res.error) {
-
-        alert('提交失败：' + res.error.message);
-
-        that.textContent = '确认提交签字';
-
-        that.disabled = false;
-
-        return;
-
-      }
-
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:24px;text-align:center">' +
-
-        '<div><div style="font-size:64px;margin-bottom:16px">?</div>' +
-
-        '<h2 style="color:#333">签字已提交</h2>' +
-
-        '<p style="color:#666;margin-top:8px">感谢您的确认，签字已保存到订单。</p></div></div>';
-
-    });
-
-  };
-
-}
-
-
-
-// 页面加载完成后初始化
-
-document.addEventListener('DOMContentLoaded', initApp);
 
 </script>
 
 </body>
 
 </html>
-
-
-
-
-
-
-
